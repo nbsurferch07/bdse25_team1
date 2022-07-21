@@ -1,0 +1,181 @@
+﻿/*set css variable*/
+/*--main-color: black;*/
+/*access css variable*/
+/*var(--main-color);*/
+:root {
+    /* Dark gray (almost black) */
+    --main-color: #ffffff;
+    /* Gold */
+    --sec-color: #ffc107;
+    /* White */
+    --ter-color: #fff;
+}
+
+body {
+    background-color: #ffffff;
+    color: white;
+}
+
+/* ==================== NAV BAR */
+
+#mynav {
+    background-color: #343a40 !important;
+    color: var(--main-color);
+    min-height: 72px;
+}
+
+/* ==================== NAV BAR */
+
+header {
+    background-color: rgba(242,177,45, 1.0) !important;
+}
+
+#headertext {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.display-4 {
+    color: black !important;
+}
+
+.lead {
+    color: rgba(0,0,0,.9) !important;
+}
+
+input {
+    width: 100%;
+}
+
+#dropdownMenuButton {
+    color: #949d9a;
+}
+
+#inputs {
+    margin-right: 48px;
+}
+
+.inputoption {
+    background-color: rgb(62,68,74);
+    margin-right: 24px !important;
+    margin-left: 24px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+.card:hover {
+    box-shadow: 0 0 16px 0px rgba(206, 169, 53, 0.75);
+}
+
+.card-link {
+    color: white;
+    text-decoration: none;
+}
+
+.card-link:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#inputs, #outputs, .card {
+    /*border: 1px solid var(--sec-color);*/
+    box-shadow: 0 0 16px 0px rgba(206, 169, 53, 0.25);
+    background-color: #343a40;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 5px;
+}
+
+p.card-text {
+    color: white !important;
+}
+
+.table-dark td, .table-dark th, .table-dark thead th {
+    border-bottom: solid 1px rgba(206,169,53,.5) !important;
+}
+
+.card-text {
+    color: black;
+}
+
+hr {
+    border-top: 1px solid rgba(242,177,45,.9);
+}
+
+code {
+    color: rgba(242,177,45,.9);
+}
+
+.contactlink {
+    color: rgba(242,177,45,.9);
+}
+
+    .contactlink:hover {
+        color: rgba(242,177,45,.5);
+    }
+
+#contact {
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    #headertext {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    #contact {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #contactdanny {
+        margin-top: -15px !important;
+        padding-top: 0;
+        margin-bottom: 24px;
+    }
+
+    #contactjosh {
+        margin-bottom: 24px;
+    }
+
+    #contactmack {
+        padding-left: 48px;
+        margin-bottom: -15px;
+    }
+
+    #inout {
+        flex-direction: column;
+        margin: 5px;
+    }
+
+    #inputs {
+        margin-bottom: 48px;
+    }
+
+    #m1, #m2 {
+        margin-top: 24px !important;
+    }
+
+    h1 {
+        font-size: 24px !important;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    #calcbtn {
+        margin-top: 0 !important;
+    }
+
+    #cbp {
+        margin-top: 0 !important;
+    }
+
+    #tablerow {
+        margin: 5px;
+    }
+}
