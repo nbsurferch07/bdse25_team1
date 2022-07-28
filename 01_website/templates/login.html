@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Pattern Map Recognition - BDSE25</title>
+    <title>家圖四必 - 登入會員</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="../static/img/favicon.ico" rel="icon">
+    <link href="../static/img/hot-dog.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +79,7 @@
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
                 <a href="./index.html" class="nav-item nav-link">首頁</a>
                 <a href="./about.html" class="nav-item nav-link">關於我們</a>
-                <a href="./pattern.html" class="nav-item nav-link active">格局圖風水辨識</a>
+                <a href="./pattern.html" class="nav-item nav-link">格局圖風水辨識</a>
                 <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
@@ -97,9 +97,12 @@
                 </div>
                 <a href="./contact.html" class="nav-item nav-link">聯絡我們</a>
             </div>
-            <div class="navbar-nav navbar-right border-inner px-3">
-                <a href="./login.html" class="nav-item nav-link">登入</a>
-                <a href="./register.html" class="nav-item nav-link">註冊</a>
+            <div class="dropdown navbar-nav navbar-right border-inner px-3">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
+                <div class="dropdown-menu m-0">
+                    <a href="./login.html" class="dropdown-item">登入</a>
+                    <a href="./register.html" class="dropdown-item">註冊</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -117,7 +120,7 @@
     <!-- Page Header End -->
 
     <!-- login Start -->
-    <form action="action_page.php">
+    <form method="post" action="/login">
         <div class="container">
 
             <label for="name"><b>帳號</b></label>
@@ -125,14 +128,75 @@
 
             <label for="psw"><b>密碼</b></label>
             <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+            <hr>
+            
             <button type="submit" class="registerbtn">登入</button>
+
         </div>
         <div class="container">
+
             <p>還沒有帳號? <a href="./register.html">註冊帳號</a></p>
+
         </div>
     </form>
     <!-- login End -->
 
+    <!-- user_management Start -->
+    <!-- <table>
+        <tr>
+            <td width="50%" style='border-right:3px dotted #AAAAAA'>
+                <!-- login Start -->
+    <!-- <form action="action_page.php">
+                    <div class="container">
+
+                        <label for="name"><b>帳號</b></label>
+                        <input type="text" placeholder="Enter name" name="name" id="name" required>
+
+                        <label for="psw"><b>密碼</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                        <button type="submit" class="registerbtn">登入</button>
+
+                    </div>
+                    <div class="container">
+
+                        <p>還沒有帳號? <a href="./register.html">註冊帳號</a></p>
+
+                    </div>
+                </form> -->
+    <!-- login End -->
+    <!-- </td> -->
+
+    <!-- <td width="50%">
+                <!-- register Start -->
+    <!-- <form action="action_page.php">
+                    <div class="container">
+
+                        <label for="name"><b>帳號</b></label>
+                        <input type="text" placeholder="Enter name" name="name" id="name" required>
+
+                        <label for="psw"><b>密碼</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+                        <label for="psw-repeat"><b>確認密碼</b></label>
+                        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                        <hr>
+
+                        <p>註冊帳號即同意本網站之條款及細則和隱私權政策 <a href="#">Terms & Privacy</a>.</p>
+                        <button type="submit" class="registerbtn">註冊</button>
+
+                    </div>
+
+                    <div class="container">
+
+                        <p>已經擁有帳號了? <a href="login.html">登入帳號</a></p>
+
+                    </div>
+                </form> -->
+    <!-- register End -->
+    <!-- </td>
+        </tr>
+    </table>-->
+    <!-- user_management End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">

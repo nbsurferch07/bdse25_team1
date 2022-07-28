@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Pattern Map Recognition - BDSE25</title>
+    <title>家圖四必 - 風水辨識</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="../static/img/favicon.ico" rel="icon">
+    <link href="../static/img/hot-dog.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,9 +97,12 @@
                 </div>
                 <a href="./contact.html" class="nav-item nav-link">聯絡我們</a>
             </div>
-            <div class="navbar-nav navbar-right border-inner px-3">
-                <a href="./login.html" class="nav-item nav-link">登入</a>
-                <a href="./register.html" class="nav-item nav-link">註冊</a>
+            <div class="dropdown navbar-nav navbar-right border-inner px-3">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
+                <div class="dropdown-menu m-0">
+                    <a href="./login.html" class="dropdown-item">登入</a>
+                    <a href="./register.html" class="dropdown-item">註冊</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -111,35 +114,33 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="display-4 text-uppercase text-white">風水辨識</h1>
-
-                <p>分析結果僅供參考</p>
+                <div class="col-12 text-center">
+                    <a href="#">會員限定功能</a>
+                </div>
             </div>
         </div>
     </div>
     <!-- Page Header End -->
 
-    <!-- picture congnition Start -->
-    <div class="file-upload">
-        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
-            Image</button>
-
-        <div class="image-upload-wrap">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-            <div class="drag-text">
-                <h3>Drag and drop a file or select add Image</h3>
-            </div>
-        </div>
-        <div class="file-upload-content">
-            <img class="file-upload-image" src="#" alt="your image" />
-            <div class="image-title-wrap">
-                <button type="button" onclick="removeUpload()" class="remove-image">重新選擇
-                </button>
-                <button type="button" onclick="Upload()" class="upload-image">開始分析
-                </button>
-            </div>
-        </div>
+    <!-- Page Jumps Start -->
+    <div class="container text-center">
+        <div id="timeBox"></div>
+        <p class="container" style="margin-top: 20px;">即將至會員登入頁面，無跳轉請按下方登入</p>
+        <a href="./login.html" class="nav-item nav-link" style="font-weight:bold;">會員登入</a>
     </div>
-    <!-- picture congnition End -->
+    <script>
+        var count = 5;
+        function countDown() {
+            document.getElementById("timeBox").innerHTML = count;
+            count -= 1;
+            if (count == 0) {
+                location.href = "./login.html";
+            }
+            setTimeout("countDown()", 1000);
+        }
+        countDown();
+    </script>
+    <!-- Page Jumps End -->
 
 
     <!-- Footer Start -->
