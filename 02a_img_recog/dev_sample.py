@@ -16,35 +16,27 @@ import cv2
 img = cv2.imread("C:\\Users\\Student\\BDSE25_30\\99_Projects\\Final_Project\\03_Execution\\03_img_recognition\\images\\44.jpg")
 # process
 img = fengshui.remove_noise(img)
-cv2.imshow("img", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
+cv2.imshow("input image", img)
 
 # Fengshui 1
 check_door_img = img.copy() 
 
-# get doors coordinate
-c_list = fengshui.find_door(check_door_img)
-
 # check fengshui & draw the signal
-res_img = fengshui.check_FengShui_1(c_list, check_door_img)
+check_door_img = fengshui.check_FengShui_1(check_door_img)
 
 
 # res_img = res_img.astype('float32') / 255
-cv2.imshow("res_img", res_img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
+cv2.imshow("check door image", check_door_img)
 
 
 # Fengshui 2
 check_room_img = img.copy() 
 
-err_list = fengshui.check_room_size(check_room_img)
+room_err_list = fengshui.check_FengShui_2(check_room_img)
 
-fengshui.contour_drawing(check_room_img, err_list)
+fengshui.contour_drawing(check_room_img, room_err_list)
 
-cv2.imshow("check_img", check_room_img)
+cv2.imshow("check room image", check_room_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

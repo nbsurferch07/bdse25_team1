@@ -1,4 +1,4 @@
-from utils.FloorplanToBlenderLib import *
+import detect
 import cv2
 import numpy as np
 import pandas as pd
@@ -10,12 +10,48 @@ from shapely.geometry.polygon import Polygon
 # import ctypes
 
 
+
+def remove_noise(img):
+    # get binary image
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to gray
+    thresh = cv2.threshold(img_gray, 135, 255, cv2.THRESH_BINARY)[1] # convert to binary
+    img = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
+    
+    # contour hierarchy
+    regions, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    # detect all elements
+    countour_list = []
+    for region in regions:
+        x, y, w, h = cv2.boundingRect(region)
+        countour_list.append([x, y, w, h])
+    
+    # get 2nd largest contour
+    countour_list = np.asarray(countour_list)  # convert to numpy-array
+    column_values = ['left', 'top', 'width', 'height']
+    df = pd.DataFrame(data = countour_list, columns = column_values)
+    df = df.sort_values(by='width', ascending=False)
+
+    index = df.iloc[1]
+    x, y, w, h = index['left'], index['top'], index['width'], index['height']
+
+    
+    # remove outside noise
+    img[:, :x] = [255, 255, 255]
+    img[x + w + 1:, :] = [255, 255, 255]
+    img[:y, :] = [255, 255, 255]
+    img[y + h + 1:, :] = [255, 255, 255]
+
+    return img
+
+
+
 # Fengshui 1
 def img_processing(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
     # convert to binary image & remove noise
-    thresh = cv2.threshold(gray, 135, 255, cv2.THRESH_BINARY )[1]
+    thresh = gray
 
     #  Morphological reconstruction (delete labels)
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
@@ -54,8 +90,8 @@ def get_median(data):
     return m_width, m_height
 
 
-def find_door(img):
-    c_list = []
+def find_door_list(img):
+    cp_list = []
     
     thresh, marker, walls, other = img_processing(img)
 
@@ -74,33 +110,73 @@ def find_door(img):
             # door gravity
             cx = round(left + width*0.5)
             cy = round(top + height*0.5) 
-            c_list.append([cx, cy])
+            cp_list.append([cx, cy])
 
-    return c_list
+    return cp_list
 
 
-def check_rgb(img, coord):
-    val = img[coord[1], coord[0]]  # img(y, x)
+def swap(v1, v2):
+    tmp = v1
+    v1 = v2
+    v2 = tmp
+    return v1, v2
+
+
+def check_wall(wall, coord):
+    val = wall[coord[1], coord[0]]  # img(y, x)
     
-    # black -> False / others -> True
-    return True if sum(val) else False
+    # 0 -> False / 255 -> True
+    # return True if sum(val) else False
+    return True if val else False
 
 
-def check_intersection(img, p1, p2):
+def check_door(other, coord):
+    
+    for x in range(coord[0] - 1, coord[0] + 2):
+        for y in range(coord[1] - 1, coord[1] + 2):
+            val = other[y, x]  # img(y, x)
+            # print([x, y], val)
+            
+            if val: return True # 0 -> True / 255 -> False
+            
+    return False
+
+
+def check_error_line(img, p1, p2):
+    
+    # wall for boundary detection / other for door detection
+    _, _, walls, other = img_processing(img)
+    
+    
     dx = p1[0] - p2[0]
     dy = p1[1] - p2[1]
     
+    pt_list = []
     
     # when y = 0
     if dx == 0:
         ang = 90
         x = p1[0]
         
-        for y in range(p1[1], p2[1]):
-            pt = [p1[0], y]
-            # check if intersect wall
-            if not check_rgb(img, pt):
+        # swap value when p1 > p2
+        if p1[1] > p2[1]:
+            p1, p2 = swap(p1, p2)
+        
+        # detection range of the line extended
+        for y in range(p1[1] - 15, p2[1] + 15):
+            pt = [x, y]
+            
+            # boundary detection
+            if not check_wall(walls, pt):
                 return False
+            
+            # misidentified door excluded
+            if check_door(other, pt):
+                # check if any similar point exists in the list
+                if not pt_list or abs(sum(pt) - sum(pt_list[-1])) > 5: 
+                    pt_list.append(pt)
+                else: pass
+                
     # when y != 0
     else:
         m = dy / dx  # get slope
@@ -108,48 +184,70 @@ def check_intersection(img, p1, p2):
         ang = (arc * 180) / math.pi  # get angle
         
         a = m
-        b = p1[1] - (a * p1[0])
+        b = p1[1] - a*p1[0]
 
         # x-axis
-        if ang < 6:
+        if ang < 7:
+            
+            # swap value when p1 > p2
             if p1[0] > p2[0]:
-                tmp = p1
-                p1 = p2
-                p2 = tmp
-                
-            for x in range(p1[0], p2[0]):
-                y = round(a * x + b)
+                p1, p2 = swap(p1, p2)
+            
+            # detection range of the line extended
+            for x in range(p1[0] - 15, p2[0] + 15):
+                y = int(a*x + b)
                 pt = [x, y]
-                if not check_rgb(img, pt):
+                
+                # boundary detection
+                if not check_wall(walls, pt):
                     return False
-
+                
+                # misidentified door excluded
+                if check_door(other, pt):
+                    # check if any similar point exists in the list
+                    if not pt_list or abs(sum(pt) - sum(pt_list[-1])) > 5: 
+                        pt_list.append(pt)
+                    else: pass
+                    
+                
         # y-axis
-        elif ang > 84:
+        elif ang > 83:
+            
+            # swap value when p1 > p2
             if p1[1] > p2[1]:
-                tmp = p1
-                p1 = p2
-                p2 = tmp
-                
-            for y in range(p1[1], p2[1]):
-                x = round((y - b) / a)
+                p1, p2 = swap(p1, p2)
+            
+            # detection range of the line extended
+            for y in range(p1[1] - 15, p2[1] + 15):
+                x = int((y - b) / a)
                 pt = [x, y]
                 
-                if not check_rgb(img, pt):
+                # boundary detection
+                if not check_wall(walls, pt):
                     return False
+                
+                # misidentified door excluded
+                if check_door(other, pt):
+                    # check if any similar point exists in the list
+                    if not pt_list or abs(sum(pt) - sum(pt_list[-1])) > 5: 
+                        pt_list.append(pt)
+                    else: pass
+                
         else: return False
+
+    # print(pt_list)
+    if len(pt_list) > 2: return False
     
     return True
     
     
-def check_FengShui_1(c_list, img):
-    _, _, walls, _ = img_processing(img)
-    walls = cv2.cvtColor(walls, cv2.COLOR_GRAY2BGR)
-    
-    for i in range(len(c_list) - 1):
-        for j in range(i + 1, len(c_list)):
-            if check_intersection(walls, c_list[i], c_list[j]):  # if true -> draw the lin
-                cv2.line(img, c_list[i], c_list[j], (0, 0, 255), 5)
-    
+def check_FengShui_1(img):
+    cp_list = find_door_list(img)
+    for i in range(len(cp_list) - 1):
+        for j in range(i + 1, len(cp_list)):
+            if check_error_line(img, cp_list[i], cp_list[j]):  # if true -> draw the line
+                cv2.line(img, cp_list[i], cp_list[j], (0, 0, 255), 5)
+                
     return img
 
 
@@ -166,39 +264,6 @@ def impl_model(img):
                              mag_ratio=1.2,
                              )
     return result
-
-
-def remove_noise(img):
-    # get binary image
-    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to gray
-    thresh = cv2.threshold(img_gray, 135, 255, cv2.THRESH_BINARY)[1] # convert to binary
-    img = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
-    
-    # contour hierarchy
-    regions, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    # detect all elements
-    countour_list = []
-    for region in regions:
-        x, y, w, h = cv2.boundingRect(region)
-        countour_list.append([x, y, w, h])
-    
-    # get 2nd largest contour
-    countour_list = np.asarray(countour_list)  # convert to numpy-array
-    column_values = ['left', 'top', 'width', 'height']
-    df = pd.DataFrame(data = countour_list, columns = column_values)
-    df = df.sort_values(by='width', ascending=False)
-
-    index = df.iloc[1]
-    x, y, w, h = index['left'], index['top'], index['width'], index['height']
-
-    
-    # remove outside noise
-    img[:, :x] = [255, 255, 255]
-    img[x + w + 1:, :] = [255, 255, 255]
-    img[:y, :] = [255, 255, 255]
-    img[y + h + 1:, :] = [255, 255, 255]
-    
-    return img
 
 
 
@@ -240,7 +305,7 @@ def get_boxes(img):
 def correct_name(val):
     # correct to the right room name
     bed_room = ['堅', '臥 室', '臥 堂', '室', '臥室']
-    bth_room = ['瑜', '}', '沿廁', '浴廁']
+    bth_room = ['瑜', '}', '沿廁', '淞廁', '汗廝', '浴廁']
     d_room = ['餐廳']
     l_room = ['客廳']
     kit = ['麝','房', '廚房']
@@ -308,7 +373,7 @@ def get_info(img, select_room_type):
 
 
 
-def check_room_size(img):
+def check_FengShui_2(img):
     room_dict = get_room_dict(img)
     
     # set list for bedroom & living room
