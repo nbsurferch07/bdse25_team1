@@ -23,7 +23,7 @@
 ## Demo
 
 [苡晏影片]  
-![Demo image]("/01_website/static/img/testimonial-2.jpg")
+![Demo image]("01_website/static/img/testimonial-2.jpg")
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
