@@ -266,8 +266,6 @@ def impl_model(img):
     return result
 
 
-
-
 def get_words_position(img):
     cp_list = []
     
@@ -372,6 +370,26 @@ def get_info(img, select_room_type):
     return info_list
 
 
+def contour_drawing(img, err_list):
+    
+    if err_list:
+        print('gotcha')
+        
+        i = 0
+        while i < len(err_list):
+            pts = np.array(err_list[i])
+
+            img = cv2.polylines(img,
+                                [pts],
+                                True, # isClosed
+                                (0, 0, 255), # color
+                                2, # thickness
+                               )
+            i += 1
+    else: print('not find error')
+    
+    return img
+
 
 def check_FengShui_2(img):
     room_dict = get_room_dict(img)
@@ -405,28 +423,53 @@ def check_FengShui_2(img):
                 if i[1] not in err_list: err_list.append(i[0])
                 if j[1] not in err_list: err_list.append(j[0])
 
-    return err_list
+    img = contour_drawing(img, err_list)
 
 
-def contour_drawing(img, err_list):
+    return img
+
+
+
+# Fengshui 3
+def get_center_point(img):
+    # Create blank imag
+    height, width, channels = img.shape
+    blank_image = np.zeros((height,width,3), np.uint8)
+
+    # Grayscale image
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # detect outer Contours (simple floor or roof solution), paint them red on blank_image
+    contour, _ = detect.detectOuterContours(gray, blank_image, color=(255,0,0))
     
-    if err_list:
-        print('gotcha')
-        
-        i = 0
-        while i < len(err_list):
-            pts = np.array(err_list[i])
+    mv = cv2.moments(contour)
+    cx = int(mv['m10'] / mv['m00'])
+    cy = int(mv['m01'] / mv['m00'])
+    cp = (cx, cy)
+    
+    return cp
 
-            img = cv2.polylines(img,
-                                [pts],
-                                True, # isClosed
-                                (0, 0, 255), # color
-                                2, # thickness
-                               )
-            i += 1
-    else: print('not find error')
+
+def check_FengShui_3(img):
+    err_list = []
+    
+    # get bathroom list
+    select_room_type = '浴廁'
+    bth_list = get_info(img, select_room_type)
+    
+    
+    # get center point of room
+    cp = get_center_point(img)
+    
+    for bth in bth_list:
+        bth_np_arr = np.array(bth[0])
+        check = cv2.pointPolygonTest(bth_np_arr, cp, False) # >=0 : inner / <0 : outer
+        if check >= 0: err_list.append(bth[0])
+            
+    img = contour_drawing(img, err_list)
     
     return img
+
 
 
 # Only needs to run once to load the model into memory
