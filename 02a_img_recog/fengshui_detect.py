@@ -9,14 +9,30 @@ from shapely.geometry.polygon import Polygon
 # import random
 # import ctypes
 
+"""
+Detect
+This file contains functions used when detecting and calculating shapes in images.
 
+FloorplanToBlender3d
+Copyright (C) 2019 Daniel Westberg
+
+Floor-Plan-Detection
+Copyright (c) 2021 Resilience Business Grids
+"""
 
 def remove_noise(img):
-    # get binary image
+    """
+    Remove watermark and outer noise from image
+    @Param @mandatory img image input
+    @Return processed image
+    """
+    # step1 get binary image to remove watermark 
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to gray
     thresh = cv2.threshold(img_gray, 135, 255, cv2.THRESH_BINARY)[1] # convert to binary
     img = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
     
+
+    # step2 remove outer noise
     # contour hierarchy
     regions, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -45,9 +61,19 @@ def remove_noise(img):
     return img
 
 
-
-# Fengshui 1
 def img_processing(img):
+    """
+    I have copied and changed this function
+
+    origin from 
+    https://stackoverflow.com/a/62317418
+
+    @Param img input image
+    @Return thresh: get a grayscale image for which a threshold calculation has been performed
+            marker: repeated eroding and dilating to filter contours
+            walls: get a grayscale image for which by eroding only the contour of the room exist
+            others: get a greyscale image with filtered elements on a black background 
+    """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
     # convert to binary image & remove noise
@@ -58,9 +84,9 @@ def img_processing(img):
     kernel2 = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
     marker = cv2.dilate(thresh, kernel, iterations = 1)
     while True:
-        tmp=marker.copy()
-        marker=cv2.erode(marker, kernel2)
-        marker=cv2.max(thresh, marker)
+        tmp = marker.copy()
+        marker = cv2.erode(marker, kernel2)
+        marker = cv2.max(thresh, marker)
         difference = cv2.subtract(tmp, marker)
         if cv2.countNonZero(difference) == 0:
             break
@@ -77,6 +103,12 @@ def img_processing(img):
 
 
 def get_median(data):
+    """
+    Get median value of elements width & height
+    Help function for FengShui checking
+    @Param data for the list of all detected elements
+    @Return width and height value
+    """
     # get median of elements width & height
     column_values = ['left', 'top', 'width', 'height', 'area']
     df = pd.DataFrame(data = data, columns = column_values)
@@ -91,6 +123,16 @@ def get_median(data):
 
 
 def find_door_list(img):
+    """
+    I have copied and changed this function
+
+    origin from 
+    https://stackoverflow.com/a/62317418
+
+    Help function for FengShui-1 checking 
+    @Param image input image
+    @Return center point of doors
+    """  
     cp_list = []
     
     thresh, marker, walls, other = img_processing(img)
@@ -123,15 +165,27 @@ def swap(v1, v2):
 
 
 def check_wall(wall, coord):
+    """
+    Check the pixels of the wall elements in the image
+    Help function for error line checking
+    @Param wall image input
+    @Param coord the specific coordinates of the walls
+    @Return true as white, black as black
+    """
     val = wall[coord[1], coord[0]]  # img(y, x)
-    
+
     # 0 -> False / 255 -> True
-    # return True if sum(val) else False
     return True if val else False
 
 
 def check_door(other, coord):
-    
+    """
+    Check the pixels of the door elements in the image
+    Help function for error line checking
+    @Param other image input
+    @Param coord the specific coordinates of the doors
+    @Return true as white, false as black
+    """
     for x in range(coord[0] - 1, coord[0] + 2):
         for y in range(coord[1] - 1, coord[1] + 2):
             val = other[y, x]  # img(y, x)
@@ -143,7 +197,14 @@ def check_door(other, coord):
 
 
 def check_error_line(img, p1, p2):
-    
+    """
+    Check whether the error line can be drawn
+    Help function for FengShui 1 checking
+    @Param img input image
+    @Param p1 check point 1
+    @Param p2 check point 2
+    @Return true as there exist detected fengshui, false as not exists 
+    """
     # wall for boundary detection / other for door detection
     _, _, walls, other = img_processing(img)
     
@@ -241,18 +302,14 @@ def check_error_line(img, p1, p2):
     return True
     
     
-def check_FengShui_1(img):
-    cp_list = find_door_list(img)
-    for i in range(len(cp_list) - 1):
-        for j in range(i + 1, len(cp_list)):
-            if check_error_line(img, cp_list[i], cp_list[j]):  # if true -> draw the line
-                cv2.line(img, cp_list[i], cp_list[j], (0, 0, 255), 5)
-                
-    return img
 
-
-# Fengshui 2
 def impl_model(img):
+    """
+    Implementing the easyocr model 
+    Help function for FengShui 2 and 3 checking
+    @Param image input image
+    @Return result the detected word list from the model
+    """
     # get words position
     result = reader.readtext(img,
                              detail=1,
@@ -267,6 +324,12 @@ def impl_model(img):
 
 
 def get_words_position(img):
+    """
+    Get the midpoint of all recognised words
+    Help function for FengShui 2 and 3 checking
+    @Param image input image
+    @Return midpoint list
+    """
     cp_list = []
     
     # load easyocr to get words position
@@ -284,6 +347,12 @@ def get_words_position(img):
 
 
 def get_boxes(img):
+    """
+    Get the midpoint of all recognised words
+    Help function for FengShui 2 and 3 checking
+    @Param image input image
+    @Return coordinates of the room in the list and grayscale room image
+    """
     # get boxes
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray = detect.wall_filter(gray)
@@ -301,6 +370,12 @@ def get_boxes(img):
 
 
 def correct_name(val):
+    """
+    Correct the detected wrong room name
+    Help function for FengShui 2 and 3 checking
+    @Param val input room type string
+    @Return corrected room type string
+    """
     # correct to the right room name
     bed_room = ['堅', '臥 室', '臥 堂', '室', '臥室']
     bth_room = ['瑜', '}', '沿廁', '淞廁', '汗廝', '浴廁']
@@ -360,7 +435,12 @@ def get_room_dict(img):
 
 
 def get_info(img, select_room_type):
-    
+    """
+    Get related information
+    @Param img image input
+    @Param selected room type
+    @Return coordinates and area of the room in list
+    """
     # get room coordinate and type
     room_dict = get_room_dict(img)
     
@@ -371,67 +451,35 @@ def get_info(img, select_room_type):
 
 
 def contour_drawing(img, err_list):
-    
-    if err_list:
-        print('gotcha')
-        
-        i = 0
-        while i < len(err_list):
-            pts = np.array(err_list[i])
+    """
+    Drawing for signature where fengshui problem exists
+    Help function for FengShui-2 and FengShui-3 checking 
+    @Param image input image
+    @Param error list for a specific room coordinate
+    @Return output image
+    """  
+    i = 0
+    while i < len(err_list):
+        pts = np.array(err_list[i])
 
-            img = cv2.polylines(img,
-                                [pts],
-                                True, # isClosed
-                                (0, 0, 255), # color
-                                2, # thickness
-                               )
-            i += 1
-    else: print('not find error')
+        img = cv2.polylines(img,
+                            [pts],
+                            True, # isClosed
+                            (0, 0, 255), # color
+                            2, # thickness
+                            )
+        i += 1
     
     return img
 
 
-def check_FengShui_2(img):
-    room_dict = get_room_dict(img)
-    
-    # set list for bedroom & living room
-    b_list = room_dict['臥室']
-    l_list = room_dict['客廳']
-
-    # set list for bedroom & kitchen
-    bth_list = room_dict['浴廁']
-    kit_list = room_dict['廚房']
-    
-    err_list = []
-    # check wether bedroom > living room
-    for i in b_list:
-        for j in l_list:
-            if i[1] > j[1]:
-                # print(f'臥室 > 客廳:\n{i[1]} > {j[1]}')
-                # contour_drawing(img, i[0])
-                # contour_drawing(img, j[0])
-                if i[1] not in err_list: err_list.append(i[0])
-                if j[1] not in err_list: err_list.append(j[0])
-    
-    # check wether bathroom > kitchen
-    for i in bth_list:
-        for j in kit_list:
-            if i[1] > j[1]:
-                # print(f'廁所 > 廚房:\n{i[1]} > {j[1]}')
-                # contour_drawing(img, i[0])
-                # contour_drawing(img, j[0])
-                if i[1] not in err_list: err_list.append(i[0])
-                if j[1] not in err_list: err_list.append(j[0])
-
-    img = contour_drawing(img, err_list)
-
-
-    return img
-
-
-
-# Fengshui 3
 def get_center_point(img):
+    """
+    Drawing for signature where fengshui problem exists
+    Help function for FengShui-3 checking 
+    @Param image input image
+    @Return center point of room
+    """  
     # Create blank imag
     height, width, channels = img.shape
     blank_image = np.zeros((height,width,3), np.uint8)
@@ -450,7 +498,72 @@ def get_center_point(img):
     return cp
 
 
-def check_FengShui_3(img):
+def check_FengShui_1(img, output_img):
+    """
+    Check if the door is opposite the other door
+    @Param image input image for fengshui checking
+    @Return output image
+    """
+    flag = 0 # check whether exists fengshui-1
+
+    cp_list = find_door_list(img)
+    for i in range(len(cp_list) - 1):
+        for j in range(i + 1, len(cp_list)):
+            if check_error_line(img, cp_list[i], cp_list[j]):  # if true -> draw the line
+                flag = 1
+                cv2.line(output_img, cp_list[i], cp_list[j], (0, 0, 255), 5)
+                
+    return output_img, flag
+
+
+def check_FengShui_2(img, output_img):
+    """
+    Check if the wrong room size exists
+    @Param image input image for fengshui checking
+    @Return output image
+    """
+    room_dict = get_room_dict(img)
+    
+    # set list for bedroom & living room
+    b_list = room_dict['臥室']
+    l_list = room_dict['客廳']
+
+    # set list for bedroom & kitchen
+    bth_list = room_dict['浴廁']
+    kit_list = room_dict['廚房']
+
+    flag = 0    
+    err_list = []
+
+    # check wether bedroom > living room
+    for i in b_list:
+        for j in l_list:
+            if i[1] > j[1]:
+                if i[1] not in err_list: err_list.append(i[0])
+                if j[1] not in err_list: err_list.append(j[0])
+    
+    # check wether bathroom > kitchen
+    for i in bth_list:
+        for j in kit_list:
+            if i[1] > j[1]:
+                if i[1] not in err_list: err_list.append(i[0])
+                if j[1] not in err_list: err_list.append(j[0])
+
+    if err_list:
+        flag = 1
+        output_img = contour_drawing(output_img, err_list)
+
+
+    return output_img, flag
+
+
+def check_FengShui_3(img, output_img):
+    """
+    Check if the bathroom is in the middle of the room
+    @Param image input image for fengshui checking
+    @Return output image and boolean sign
+    """
+    flag = 0
     err_list = []
     
     # get bathroom list
@@ -463,13 +576,14 @@ def check_FengShui_3(img):
     
     for bth in bth_list:
         bth_np_arr = np.array(bth[0])
-        check = cv2.pointPolygonTest(bth_np_arr, cp, False) # >=0 : inner / <0 : outer
-        if check >= 0: err_list.append(bth[0])
-            
-    img = contour_drawing(img, err_list)
-    
-    return img
+        check_inner = cv2.pointPolygonTest(bth_np_arr, cp, False) # >=0 : inner / <0 : outer
+        if check_inner >= 0: err_list.append(bth[0])
 
+    if err_list:
+        flag = 1
+        output_img = contour_drawing(output_img, err_list)
+    
+    return output_img, flag
 
 
 # Only needs to run once to load the model into memory
