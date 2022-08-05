@@ -1,18 +1,74 @@
-{% extends "base.html" %}
-{% block title %}家圖四必 - 可負擔房價計算機{% endblock title %}
-{% block src %}
-{% include "_style.html" %}
-{% endblock src %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>家圖四必 - 可負擔房價計算機</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="../static/img/hot-dog.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+
 <body>
-    {% block body %}
     <!-- Topbar Start -->
-    {% include "_topbar.html" %}
+    <div class="container-fluid px-0 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-lg-4 text-center bg-secondary py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-envelope fs-1 text-primary me-3"></i>
+                    <div class="text-start">
+                        <h6 class="text-uppercase mb-1">Email Us</h6>
+                        <span>iSpan@example.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center bg-primary border-inner py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <a href="./index.html" class="navbar-brand">
+                        <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center bg-secondary py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
+                    <div class="text-start">
+                        <h6 class="text-uppercase mb-1">Call Us</h6>
+                        <span>0987 654 3219</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Topbar End -->
 
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
+        <a href="./index.html" class="navbar-brand d-block d-lg-none">
             <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -20,32 +76,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
+                <a href="./index.html" class="nav-item nav-link">首頁</a>
+                <a href="./about.html" class="nav-item nav-link">關於我們</a>
+                <a href="./pattern.html" class="nav-item nav-link">格局圖風水辨識</a>
                 <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
+                        <a href="./info.html" class="dropdown-item">房價資訊</a>
+                        <a href="./predict.html" class="dropdown-item">房價預測</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">計算機</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item active">可負擔房價計算機</a>
+                        <a href="./mortgage.html" class="dropdown-item">房貸計算機</a>
+                        <a href="./affordable.html" class="dropdown-item active">可負擔房價計算機</a>
                     </div>
                 </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
+                <a href="./contact.html" class="nav-item nav-link">聯絡我們</a>
             </div>
-            <div class="dropdown navbar-nav navbar-right border-inner px-3">
+            <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right: 0px">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
                 <div class="dropdown-menu m-0">
-                    <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                    <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                    <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
+                    <a href="./login.html" class="dropdown-item">登入</a>
+                    <a href="./register.html" class="dropdown-item">註冊</a>
                 </div>
             </div>
         </div>
@@ -57,126 +112,105 @@
     <div class="container-fluid bg-dark bg-img p-5 mb-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">可負擔房價計算機</h1>
+                <h1 class="display-4 text-uppercase text-white">可負擔房價試算</h1>
+                <p>輸入以下欄位，即為您估算您可以買到的房屋金額</p>
             </div>
         </div>
     </div>
     <!-- Page Header End -->
 
+
     <!-- Calculator Start -->
-    <onload="CheckHCR();">
-        <div class="container">
-            <div id="inout" class="row mt-5">
-                <div id="inputs" class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="row mt-5 inputoption text-center">
-                                <div class="col ml-4 pt-3">
-                                    <i></i>
-                                </div>
-                            </div>
-                            <div class="row inputoption text-right">
-                                <div class="col ml-4">
-                                    <i>每月收入</i>
-                                </div>
-                                <div class="col mr-4">
-                                    <input type="text" id="totalPrice" value="$125,000"
-                                        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
-                                        oninput="DownPayment(this.value, document.getElementById('downPayment').value, document.getElementById('loan').value);" />
-                                </div>
-                            </div>
-                            <div class="row mb-3 inputoption text-right">
-                                <div class="col ml-4 pb-4">
-                                    <i>房貸占月收入比例</i>
-                                </div>
-                                <div class="col mr-4">
-                                    <input type="text" id="downPayment" value="$25,000"
-                                        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
-                                        oninput="DownPayment(document.getElementById('totalPrice').value, this.value, document.getElementById('loan').value);" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mb-4 mr-4 ml-4 mb-4" />
-                    <div class="row mb-3">
-                        <div class="col ml-4">
-                            貸款總額:
-                        </div>
-                        <div class="col mr-4">
-                            <input type="text" id="loan" value="$100,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                                data-type="currency" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col ml-4">
-                            貸款年利率:
-                        </div>
-                        <div class="col mr-4">
-                            <input type="text" id="rate" value="3.92" oninput="validateRate(this.value)" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col ml-4">
-                            貸款期限(月):
-                        </div>
-                        <div class="col mr-4">
-                            <input type="number" id="term" value="360" min="1" max="360"
-                                oninput="validity.valid||(value='');" />
-                        </div>
-                    </div>
-                    <div id="cbp" class="row mr-4 justify-content-end">
-                        <button id="calcbtn" class="mt-5 btn btn-warning"
-                            onclick="Calculate(document.getElementById('loan').value,document.getElementById('term').value,document.getElementById('rate').value)">
-                            開始計算
-                        </button>
-                    </div>
-                    <!-- <div class="row mr-4 mb-5 justify-content-end">
-                        <button id="resetbtn" class="btn btn-danger mt-3" onclick="Reset()">
-                            重新計算
-                        </button>
-                    </div> -->
-                </div>
-                <div id="outputs" class="col">
-                    <div class="row">
-                        <div id="m1" class="col">
-                            <div id="m2" class="row justify-content-center mt-4">
-                                <h1>每月應繳房貸</h1>
-                            </div>
-                            <div class="row justify-content-center pt-5 pb-5">
-                                <h1 id="monthlypayment">$0.00</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>本金總額</h3>
-                                </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalprincipal">$0.00</h3>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="row mt-5 inputoption">
+                            <section class="l-formTable container-xl mb-5 px-0 px-sm-3" data-type="comp"
+                                data-comp-name="_formTable">
+                                <div class="l-formTable__block">
+                                    <div class="l-formTable__form">
+                                        <div class="col ml-4 pt-3">
+                                            <div class="l-formTable__formRow max-600 row p-0">
+                                                <label for="amount"
+                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">自備款金額：</label>
+                                                <input type="text" name="amount"
+                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                    maxlength="4" id="amount" inputmode="numeric">
+                                                <div class="col-2 ">萬元</div>
+                                            </div>
+                                            <br>
+                                            <div class="l-formTable__formRow max-600 row p-0">
+                                                <label for="period"
+                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">每月規劃還款金額：</label>
+                                                <input type="text" name="period"
+                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                    maxlength="7" id="period" inputmode="numeric">
+                                                <div class="col-2 ">元</div>
+                                                <div
+                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                    輸入資料不符合資格請重新輸入
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="l-formTable__formRow max-600 row p-0">
+                                                <label for="grace"
+                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預計還款期間：</label>
+                                                <input type="text" name="grace"
+                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                    maxlength="2" id="grace" inputmode="numeric">
+                                                <div class="col-2">年</div>
+                                                <div
+                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                    輸入資料不符合資格請重新輸入
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="l-formTable__formRow max-600 row p-0">
+                                                <label for="charge"
+                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預估貸款利率：</label>
+                                                <input type="text" name="charge"
+                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                    maxlength="6" id="charge" inputmode="decimal">
+                                                <div class="col-2 ">%</div>
+                                                <div
+                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                    輸入資料不符合資格請重新輸入
+                                                </div>
+                                            </div><br>
+                                            <img src="../static/img/approved (1).png" width="25" height="25" />
+                                            提醒您！實際自備款金額至少需準備「可負擔房屋總價」的2-3成喔!
+                                            <br>
+                                            <img src="../static/img/approved (1).png" width="25" height="25" />
+                                            提醒您！每月規劃還款金額大多為「家庭每月收入」的3成最為保險!
+                                            <hr class="mb-4 mr-4 ml-4 mb-4" />
+                                            <div class="btn-col2">
+                                                <div class="container">
+                                                    <div class="row justify-content-center px-0">
+                                                        <div class="row justify-content-center pt-3 px-0">
+                                                            <a class="btn calBtn bg-primary m-2  btn-warning">開始試算</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>利息總額</h3>
+                            </section>
+                        </div>
+                    </div>
+                    <div id="outputs" class="col" style="background-image: url(../static/img/back_house.png);">
+                        <div class="row l-formTableCal__result">
+                            <div id="m1" class="col">
+                                <div id="m2" class="row justify-content-center mt-4" >
+                                    <h1>可負擔之房屋總價</h1>
                                 </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalinterest">$0.00</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>本息合計總額</h3>
-                                </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalcost" class="mb-5">$0.00</h3>
-                                    </div>
+                                <div class="row justify-content-center pt-5 pb-5">
+                                    <!-- 試算結果內容 -->
+                                    <div class="col-12">
+                                        <div class="py-1 color-primary font-weight" id="result" style="font-size: 40px;"></div>
+                                    </div>                              
                                 </div>
                             </div>
                         </div>
@@ -184,81 +218,149 @@
                 </div>
             </div>
         </div>
-        <!-- Calculator End -->
+    </div>
+
+    <script>
+        "use Calculation";
+
+        //#region 開頭去0
+        function trimStarZero(val) {
+            var flag = false;
+            const reg = /^0/g;
+            while (reg.test(val)) {
+                val = val.replace(reg, "");
+                flag = true;
+            }
+
+            if (flag && val == "") {
+                val = "0";
+            }
+            return val;
+        }
+        //#endregion
+
+        //#region 千分位格式化
+        function formatNumber(n) {
+            n += "";
+            var arr = n.split(".");
+            var re = /(\d{1,3})(?=(\d{3})+$)/g;
+            return arr[0].replace(re, "$1,") + (arr.length == 2 ? "." + arr[1] : "");
+        }
+        //#endregion
+    </script>
+    <!-- Calculator End -->
 
 
-        <!-- Testimonial Start -->
-        <!-- <div class="container-fluid py-5">
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
         <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Testimonial</h2>
-                <h1 class="display-4 text-uppercase">Our Clients Say!!!</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
-                        </div>
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 mb-lg-n5">
+                    <div
+                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
+                        <a href="#" class="navbar-brand">
+                            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
+                        </a>
+                        <p class="mt-3">僅為 iSpan BDSE25 學術使用<br>無營利使用</p>
                     </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </p>
                 </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;">
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Get In Touch</h4>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0"> 320 桃園市中壢區新生路二段 421 號</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">iSpan@example.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">0987 654 321</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <!-- <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i
+                                        class="fab fa-twitter fw-normal"></i></a> -->
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2"
+                                    href="https://www.facebook.com/iSpanChungli/"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <!-- <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Quick Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="./index.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>首頁</a>
+                                <a class="text-secondary mb-2" href="./about.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>關於我們</a>
+                                <a class="text-secondary mb-2" href="./pattern.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>格局圖風水辨識</a>
+                                <a class="text-secondary mb-2" href="./info.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房價資訊</a>
+                                <a class="text-secondary mb-2" href="./predict.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房價預測</a>
+                                <a class="text-secondary mb-2" href="./mortgage.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房貸計算機</a>
+                                <a class="text-secondary mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>可負擔房價計算機</a>
+                                <a class="text-secondary" href="./contact.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>聯絡我們</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
+                            <p>歡迎留下您的Email<br>即可收到最新消息
+                            </p>
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="email" class="form-control border-white p-3" placeholder="Your Email">
+                                    <button class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </p>
-                </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="img/testimonial-3.jpg" style="width: 60px; height: 60px;">
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </p>
-                </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid flex-shrink-0" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;">
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">Client Name</h4>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                    <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </p>
                 </div>
             </div>
         </div>
-    </div> -->
-        <!-- Testimonial End -->
+    </div>
+    <div class="container-fluid text-secondary py-4" style="background: #111111;">
+        <div class="container text-center">
+            <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">PATTERN MAP</a>. All
+                Rights
+                Reserved.
+
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML
+                    Codex</a>
+            </p>
+            <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+        </div>
+    </div>
+    <!-- Footer End -->
 
 
-        <!-- Footer Start -->
-        {% include "_footer.html" %}
-        <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/counterup/counterup.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 
+    <!-- Template Javascript -->
+    <script src="../static/js/main.js"></script>
 
-        <!-- JavaScript Libraries -->
-        {% include "_js_lib.html" %}
-        <!-- Template Javascript -->
-        <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-        {% endblock body %}
+    <!-- Calculate JS -->
+    <script src="../static/js/afford.js"></script>
 </body>
 
 </html>

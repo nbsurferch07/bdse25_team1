@@ -1,19 +1,75 @@
-{% extends "base.html" %}
-{% block title %}家圖四必 - 註冊會員{% endblock title %}
-{% block src %}
-{% include "_style.html" %}
-{% include "_style_register.html" %}
-{% endblock src %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>家圖四必 - 註冊會員</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="../static/img/hot-dog.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/register.css" rel="stylesheet">
+</head>
 
 <body>
-    {% block body %}
     <!-- Topbar Start -->
-    {% include "_topbar.html" %}
+    <div class="container-fluid px-0 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-lg-4 text-center bg-secondary py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-envelope fs-1 text-primary me-3"></i>
+                    <div class="text-start">
+                        <h6 class="text-uppercase mb-1">Email Us</h6>
+                        <span>iSpan@example.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center bg-primary border-inner py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <a href="./index.html" class="navbar-brand">
+                        <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center bg-secondary py-3">
+                <div class="d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
+                    <div class="text-start">
+                        <h6 class="text-uppercase mb-1">Call Us</h6>
+                        <span>0987 654 3219</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Topbar End -->
+
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
+        <a href="./index.html" class="navbar-brand d-block d-lg-none">
             <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -21,33 +77,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
+                <a href="./index.html" class="nav-item nav-link">首頁</a>
+                <a href="./about.html" class="nav-item nav-link">關於我們</a>
+                <a href="./pattern.html" class="nav-item nav-link">格局圖風水辨識</a>
                 <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
+                        <a href="./info.html" class="dropdown-item">房價資訊</a>
+                        <a href="./predict.html" class="dropdown-item">房價預測</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
+                        <a href="./mortgage.html" class="dropdown-item">房貸計算機</a>
+                        <a href="./affordable.html" class="dropdown-item">可負擔房價計算機</a>
                     </div>
                 </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
+                <a href="./contact.html" class="nav-item nav-link">聯絡我們</a>
             </div>
-        </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item active">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
+            <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right: 0px">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
+                <div class="dropdown-menu m-0">
+                    <a href="./login.html" class="dropdown-item">登入</a>
+                    <a href="./register.html" class="dropdown-item">註冊</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -65,41 +120,116 @@
     <!-- Page Header End -->
 
     <!-- register Start -->
-    <form method="post" action="/register">
+    <form action="action_page.php">
         <div class="container">
-            <div style="color: red">
-                {% for message in get_flashed_messages() %}
-                {{ message }}
-                {% endfor %}
-            </div>
 
-            <label for="name"><b>使用者名稱</b></label>
-            <input type="text" placeholder="Enter name" name="name" id="name" required>
-
-            <label for="email"><b>信箱</b></label>
-            <input type="text" placeholder="Enter email" name="email" id="email" required>
-
-            <label for="psw"><b>密碼</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-            <!-- 要寫防呆機制 -->
-            <label for="psw-repeat"><b>確認密碼</b></label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-            <hr>
-
-            <!-- <p>註冊帳號即同意本網站之條款及細則和隱私權政策    <a href="#">Terms & Privacy</a>.</p> -->
-            <button type="submit" class="registerbtn">註冊</button>
+          <label for="name"><b>帳號</b></label>
+          <input type="text" placeholder="Enter name" name="name" id="name" required>
+      
+          <label for="psw"><b>密碼</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      
+          <label for="psw-repeat"><b>確認密碼</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+          <hr>
+      
+          <p>註冊帳號即同意本網站之條款及細則和隱私權政策    <a href="#">Terms & Privacy</a>.</p>
+          <button type="submit" class="btn1 btn2 registerbtn" >註冊</button>
         </div>
-
+      
         <div class="container">
-            <p>已經擁有帳號了? <a href="{{url_for('login')}}">登入帳號</a></p>
+          <p>已經擁有帳號了? <a href="login.html">登入帳號</a></p>
         </div>
-    </form>
+      </form>
     <!-- register End -->
 
 
     <!-- Footer Start -->
-    {% include "_footer.html" %}
+    <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 mb-lg-n5">
+                    <div
+                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
+                        <a href="./index.html" class="navbar-brand">
+                            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
+                        </a>
+                        <p class="mt-3">僅為 iSpan BDSE25 學術使用<br>無營利使用</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Get In Touch</h4>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0"> 320 桃園市中壢區新生路二段 421 號</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">iSpan@example.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">0987 654 321</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <!-- <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i
+                                        class="fab fa-twitter fw-normal"></i></a> -->
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2"
+                                    href="https://www.facebook.com/iSpanChungli/"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <!-- <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Quick Links</h4>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="./index.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>首頁</a>
+                                <a class="text-secondary mb-2" href="./about.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>關於我們</a>
+                                <a class="text-secondary mb-2" href="#"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>格局圖風水辨識</a>
+                                <a class="text-secondary mb-2" href="./info.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房價資訊</a>
+                                <a class="text-secondary mb-2" href="./predict.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房價預測</a>
+                                <a class="text-secondary mb-2" href="./mortgage.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>房貸計算機</a>
+                                <a class="text-secondary mb-2" href="./affordable.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>可負擔房價計算機</a>
+                                <a class="text-secondary" href="./contact.html"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>聯絡我們</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
+                            <p>歡迎留下您的Email<br>即可收到最新消息
+                            </p>
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="email" class="form-control border-white p-3" placeholder="Your Email">
+                                    <button class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-secondary py-4" style="background: #111111;">
+        <div class="container text-center">
+            <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">PATTERN MAP</a>. All Rights Reserved.
+
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+            <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+        </div>
+    </div>
     <!-- Footer End -->
 
 
@@ -108,11 +238,17 @@
 
 
     <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/counterup/counterup.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+
     <!-- Template Javascript -->
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    {% endblock body %}
+    <script src="../static/js/main.js"></script>
+    
 </body>
 
 </html>
