@@ -82,8 +82,8 @@ class Predict(db.Model):
             self.predict_result
         )
 
-class Image(db.Model):
-    __tablename__ = 'images'
+class Fengshui(db.Model):
+    __tablename__ = 'fengshui_result'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(30), nullable=False)
     fengshui1 = db.Column(db.String(3))

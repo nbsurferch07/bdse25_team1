@@ -17,6 +17,8 @@ app = Flask(__name__,
             static_folder="static",
             static_url_path="/"
             )
+
+
 # 設定session的密鑰
 app.secret_key = 'super secret key'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -26,8 +28,8 @@ Session(app)
 # app.config['PERMANENT_SESSION_LIFETIME'] = False
 
 # 資料庫設定
-mysql_database_uri = 'mysql+pymysql://root:123456@localhost:3306/our_users'
-app.config['SQLALCHEMY_TRACK_MODFICATIONS'] = False
+mysql_database_uri = 'mysql+pymysql://root:546213@localhost:3306/accounts'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = mysql_database_uri
 db = SQLAlchemy(app)
 

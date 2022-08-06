@@ -3,12 +3,13 @@ from PIL import Image
 from app import app, db
 from form_register import FormRegister
 from flask import Flask, render_template, request, redirect, session, url_for, flash
-from model import User, Predict
+from model import User, Predict, Fengshui
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker, relationship, backref
 import price_model.load_model as price_mod
 import pattern_model.dev_sample as pattern_mod
+
 
 # Route
 @app.route('/')
@@ -123,18 +124,18 @@ def pattern_analysis():
     name = session.get('name')
     SqlalchemySession = sessionmaker(bind=db.engine)
     db_session = SqlalchemySession()
-    img = Image(name,flag1, flag2, flag3, file_path_origin,file_path_result)
-    db_session.add(img)
+    result = Fengshui(name, flag1, flag2, flag3, file_path_origin, file_path_result)
+    db_session.add(result)
     db_session.commit()
     # 結果表格表頭
-    columns = ["對門相沖","廳間房大小","浴廁居中","原圖","判斷結果"]
-    dicts = {"對門相沖":"「對門相沖」常見於現代住宅大樓內，像是大門對大門、大門對陽台門、臥室門對臥室門、臥室門對廁所門、臥室門對廚房門等等，在風水上而言，可能會產生感情不睦、漏財、身體健康受影響等問題。化解方法就是各自在門上掛門帘或者珠簾，阻擋氣場往來。",
-            "廳間房大小":"「廳間房大小」通常分為兩種，一為廁所大於廚房，二為房間大於客廳。廁所大於廚房，在風水上而言，可能會產生胃腸出現毛病，身體虛弱、晚得子嗣的狀況。房間大於客廳，在風水上而言，可能會有家人間關係疏離，朋友貴人減少、前途受到阻礙的狀況。化解方法：若房間大於客廳的情形，可以在房間內增加隔間，使房間面積變小；若為廁所大於廚房，則無法化解，必須在事先規劃就須將格局想好。",
-            "浴廁居中":"住宅的中心點為家運旺衰的主要關鍵位置，可以為客廳、書房、臥室但絕對不可以為廁所，在風水上而言，可能會有身體健康受影響、家運受壓無法發展、讀書不利、考運不吉、財運不佳的問題。化解方法：在廁所內擺上黃金葛、投射燈，來淨化穢氣活化氣場，並在門口掛上長布簾來阻絕穢氣外泄。"}
+    columns = ["對門相沖", "廳間房大小", "浴廁居中", "原圖", "判斷結果"]
+    dicts = {"對門相沖":"「對門相沖」常見於現代住宅大樓內，像是大門對大門、大門對陽台門、臥室門對臥室門、臥室門對廁所門、臥室門對廚房門等等，在風水上而言，可能會產生感情不睦、漏財、身體健康受影響等問題。\n化解方法就是各自在門上掛門帘或者珠簾，阻擋氣場往來。",
+            "廳間房大小":"「廳間房大小」通常分為兩種，一為廁所大於廚房，二為房間大於客廳。\n廁所大於廚房，在風水上而言，可能會產生胃腸出現毛病，身體虛弱、晚得子嗣的狀況。\n房間大於客廳，在風水上而言，可能會有家人間關係疏離，朋友貴人減少、前途受到阻礙的狀況。\n化解方法：若房間大於客廳的情形，可以在房間內增加隔間，使房間面積變小；若為廁所大於廚房，則無法化解，必須在事先規劃就須將格局想好。",
+            "浴廁居中":"住宅的中心點為家運旺衰的主要關鍵位置，可以為客廳、書房、臥室但絕對不可以為廁所，在風水上而言，可能會有身體健康受影響、家運受壓無法發展、讀書不利、考運不吉、財運不佳的問題。\n化解方法：在廁所內擺上黃金葛、投射燈，來淨化穢氣活化氣場，並在門口掛上長布簾來阻絕穢氣外泄。"}
     # 從資料庫抓歷史紀錄
     SqlalchemySession = sessionmaker(bind=db.engine)
     db_session = SqlalchemySession()
-    img_history = db_session.query(Image).filter_by(name=name).order_by(Image.id.desc())
+    img_history = db_session.query(Fengshui).filter_by(name=name).order_by(Fengshui.id.desc())
     return render_template('pattern_result.html',
                             file_path_origin=file_path_origin,
                             file_path_result=file_path_result,

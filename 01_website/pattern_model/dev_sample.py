@@ -26,11 +26,6 @@ def pattern_recog(img_name):
 
     path_index = path.find('.jpg')
     result_path = path[:path_index] +'_result'+ path[path_index:]
-    cv2.imwrite('./static/'+result_path, output_img)
+    cv2.imwrite('./static/'+ result_path, output_img)
 
     return flag1, flag2, flag3, result_path
-
-# cv2.imshow("input image", img) # original image
-# cv2.imshow("check door image", output_img)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
