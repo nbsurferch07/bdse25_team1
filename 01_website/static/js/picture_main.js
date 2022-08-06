@@ -1,3 +1,7 @@
+$(window).load(function(){
+    $('.file-upload-content').hide();
+});
+
 function readURL(input) {
     if (input.files && input.files[0]) {
 
@@ -11,7 +15,6 @@ function readURL(input) {
 
             $('.image-title').html(input.files[0].name);
         };
-
         reader.readAsDataURL(input.files[0]);
 
     } else {

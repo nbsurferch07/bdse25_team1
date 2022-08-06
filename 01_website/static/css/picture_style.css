@@ -82,8 +82,8 @@ body {
 }
 
 .file-upload-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 500px;
+    max-width: 500px;
     margin: auto;
     padding: 20px;
 }
@@ -142,3 +142,29 @@ body {
     transition: all .2s ease;
 }
 
+.hovertext {
+    position: relative;
+    border-bottom: 1px dotted black;
+}
+  
+.hovertext:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    width: 250px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    left: -100%;
+    top: 110%;
+}
+  
+.hovertext:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
