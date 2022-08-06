@@ -1,0 +1,1 @@
+This folder is used as storage for the result images

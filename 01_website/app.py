@@ -1,38 +1,43 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
-UPLOAD_FOLDER = './static/img'
+from PIL import Image
+from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DECIMAL,UnicodeText,Integer,LargeBinary
+from flask_migrate import Migrate
+from sqlalchemy.orm import sessionmaker, relationship, backref
+from flask_bootstrap import Bootstrap
 
-app = Flask(__name__)
+UPLOAD_FOLDER = './static/pattern_img'
+
+# 建立Application物件靜態檔案處理設定
+app = Flask(__name__,
+            static_folder="static",
+            static_url_path="/"
+            )
+
+
+# 設定session的密鑰
+app.secret_key = 'super secret key'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config["SESSION_PERMANENT"] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
+# app.config['PERMANENT_SESSION_LIFETIME'] = False
 
+# 資料庫設定
+mysql_database_uri = 'mysql+pymysql://root:546213@localhost:3306/accounts'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = mysql_database_uri
+db = SQLAlchemy(app)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+engine = create_engine(mysql_database_uri, echo=True)
 
+# 建立描述資料庫表格的類別
+# Base = declarative_base()
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/pattern', methods=['GET', 'POST'])
-def pattern():
-    return render_template('pattern.html')
-
-@app.route('/uploader', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        file = request.files["file"]
-        if file.filename != '':
-            file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-            return redirect(url_for('pattern'))
-
-@app.route('/mortgate_calculator')
-def mortgate_calculator():
-    return render_template('mortgage.html')
-
-
-@app.route('/affordable_calculator')
-def affordable_calculator():
-    return render_template('affordable.html')
+# migrate 紀錄更新資料庫
+migrate = Migrate(app, db)
+bootstrap = Bootstrap(app)
