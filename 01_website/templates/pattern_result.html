@@ -85,7 +85,8 @@
                     <table class="table table-striped">
                         <tr style="text-align: center;">
                             {% for i in dicts %}
-                            <th style="text-align: center;" ><span class="hovertext" data-hover="{{dicts[i]}}">{{ i }}</span></th>
+                            <th style="text-align: center;"><span class="hovertext" data-hover="{{dicts[i]}}">{{ i
+                                    }}</span></th>
                             {% endfor %}
                         </tr>
                         <tr style="text-align: center;">
@@ -117,9 +118,11 @@
                             <td>{{result.fengshui2}}</td>
                             <td>{{result.fengshui3}}</td>
                             <td><a href="{{url_for('static',filename=result.images_origin)}}" target="_blank"
-                                    title="{{result.images_origin.split('/')[-1]}}">{{result.images_origin.split('/')[-1]}}</a></td>
+                                    title="{{result.images_origin.split('/')[-1]}}">{{result.images_origin.split('/')[-1]}}</a>
+                            </td>
                             <td><a href="{{url_for('static',filename=result.images_result)}}" target="_blank"
-                                    title="{{result.images_result.split('/')[-1]}}">{{result.images_result.split('/')[-1]}}</a></td>
+                                    title="{{result.images_result.split('/')[-1]}}">{{result.images_result.split('/')[-1]}}</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -144,7 +147,7 @@
         <!-- JavaScript Libraries -->
         {% include "_js_lib.html" %}
         <!-- Template Javascript -->
-        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
         <script src="{{ url_for('static',filename='js/main.js')}}"></script>
         {% endblock body %}
 </body>

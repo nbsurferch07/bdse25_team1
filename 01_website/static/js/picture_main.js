@@ -1,6 +1,6 @@
-$(window).load(function(){
-    $('.file-upload-content').hide();
-});
+// $(window).load(function(){
+//     $('.file-upload-content').hide();
+// });
 
 function readURL(input) {
     if (input.files && input.files[0]) {
