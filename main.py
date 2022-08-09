@@ -1,6 +1,6 @@
-import os
-from PIL import Image
+# import os
 from app import app, db
+import os
 from form_register import FormRegister
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from model import User, Predict, Fengshui
@@ -8,7 +8,7 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker, relationship, backref
 import price_model.load_model as price_mod
-import pattern_model.dev_sample as pattern_mod
+import pattern_model.fengshui_main as pattern_mod
 
 
 # Route
