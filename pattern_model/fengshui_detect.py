@@ -9,12 +9,13 @@ from shapely.geometry.polygon import Polygon
 # import random
 # import ctypes
 
+
+from app import EASYOCR_READER
+reader = EASYOCR_READER
+
 """
 Detect
 This file contains functions used when detecting and calculating shapes in images.
-
-FloorplanToBlender3d
-Copyright (C) 2019 Daniel Westberg
 
 Floor-Plan-Detection
 Copyright (c) 2021 Resilience Business Grids
@@ -587,5 +588,5 @@ def check_FengShui_3(img, output_img):
 
 
 # Only needs to run once to load the model into memory
-global reader
-reader = easyocr.Reader(['ch_tra','en']) 
+# global reader
+# reader = easyocr.Reader(['ch_tra','en']) 

@@ -1,5 +1,5 @@
-import os
-from PIL import Image
+# import os
+# from PIL import Image
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
@@ -9,8 +9,10 @@ from sqlalchemy import Column, String, DECIMAL,UnicodeText,Integer,LargeBinary
 from flask_migrate import Migrate
 from sqlalchemy.orm import sessionmaker, relationship, backref
 from flask_bootstrap import Bootstrap
+import easyocr
 
 UPLOAD_FOLDER = './static/pattern_img'
+EASYOCR_READER = easyocr.Reader(['ch_tra','en']) 
 
 # 建立Application物件靜態檔案處理設定
 app = Flask(__name__,
