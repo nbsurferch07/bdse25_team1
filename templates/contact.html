@@ -43,9 +43,12 @@
         <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
             <div class="dropdown-menu m-0">
+                {% if session.get('name') %}
+                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
+                {% else %}
                 <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
                 <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
+                {% endif %}
             </div>
         </div>
     </nav>

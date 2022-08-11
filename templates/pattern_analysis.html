@@ -68,7 +68,7 @@
 
     <!-- picture congnition Start -->
     <div class="file-upload">
-        <form action="/pattern_analysis" enctype="multipart/form-data" method="post">
+        <form action="/bdse25_team1/pattern_analysis" enctype="multipart/form-data" method="post">
             <div class="image-upload-wrap">
                 <input class="file-upload-input" type='file' name="file" onchange="readURL(this);" accept="image/*" />
                 <div class="drag-text">
@@ -103,7 +103,6 @@
     <!-- JavaScript Libraries -->
     {% include "_js_lib.html" %}
     <!-- Template Javascript -->
-    <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <script src="{{ url_for('static',filename='js/main.js')}}"></script>
     <script src="{{ url_for('static',filename='js/picture_main.js')}}" async defer></script>
     {% endblock body %}
