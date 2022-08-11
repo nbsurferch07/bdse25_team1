@@ -3,6 +3,7 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
+
 <body>
     {% block body %}
     <!-- Topbar Start -->
@@ -79,8 +80,8 @@
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{ url_for('static',filename='img/house-2.jpg')}}"
-                            style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100"
+                            src="{{ url_for('static',filename='img/house-2.jpg')}}" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pb-5">
@@ -101,26 +102,6 @@
                         房子有好的風水能有效地提高成交率，風水是房子保值的重要因素之一。<br>
                         因此建商或投資客，也可以有效利用我們提供的工具，<br>
                     </p>
-                    <!-- <div class="row g-5">
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-heartbeat fa-2x text-white"></i>
-                            </div>
-                            <h4 class="text-uppercase">100% Healthy</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna
-                                dolor vero</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-award fa-2x text-white"></i>
-                            </div>
-                            <h4 class="text-uppercase">Award Winning</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna
-                                dolor vero</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -209,7 +190,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-surfer1.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-surfer1.jpg')}}"
+                                alt="">
                             <div
                                 class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
@@ -225,36 +207,16 @@
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
                             <h4 class="text-uppercase text-primary">楊致皓</h4>
-                            <p class="text-white m-0">數據分析師</p>
+                            <p class="text-white m-0">專案架構 | 資料處理 | 圖像辨識</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_martini.jpg')}}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/CHMartini"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">詹文孔</h4>
-                            <p class="text-white m-0">數據分析師</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-miyang.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-miyang.jpg')}}"
+                                alt="">
                             <div
                                 class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
@@ -270,36 +232,16 @@
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
                             <h4 class="text-uppercase text-primary">李明曜</h4>
-                            <p class="text-white m-0">後端工程師</p>
+                            <p class="text-white m-0">特徵工程 | 模型建置 | 網頁整合</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_longred.jpg') }}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/Roger13579"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">陳長宏</h4>
-                            <p class="text-white m-0">系統工程師</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-mina.JPG') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-mina.JPG') }}"
+                                alt="">
                             <div
                                 class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-start">
@@ -316,10 +258,59 @@
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
                             <h4 class="text-uppercase text-primary">徐苡晏</h4>
-                            <p class="text-white m-0">前端工程師</p>
+                            <p class="text-white m-0">資料視覺化 | 網頁整合</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-item">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_longred.jpg') }}"
+                                alt="">
+                            <div
+                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="https://github.com/Roger13579"><i class="fab fa-github fw-normal"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-dark border-inner text-center p-4">
+                            <h4 class="text-uppercase text-primary">陳長宏</h4>
+                            <p class="text-white m-0">資料處理 | 圖像辨識 | 系統建置</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-item">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_martini.jpg')}}"
+                                alt="">
+                            <div
+                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="https://github.com/CHMartini"><i class="fab fa-github fw-normal"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-dark border-inner text-center p-4">
+                            <h4 class="text-uppercase text-primary">詹文孔</h4>
+                            <p class="text-white m-0">資料分析 | 資料處理 | 圖像辨識</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="team-item">
                         <div class="position-relative overflow-hidden">
@@ -338,7 +329,7 @@
                         </div>
                         <div class="bg-dark border-inner text-center p-4">
                             <h4 class="text-uppercase text-primary">游霈彤</h4>
-                            <p class="text-white m-0">系統工程師</p>
+                            <p class="text-white m-0">系統建置</p>
                         </div>
                     </div>
                 </div>
@@ -346,64 +337,6 @@
         </div>
     </div>
     <!-- Team End -->
-
-
-    <!-- Facts Start -->
-    <!-- <div class="container-fluid bg-img py-5 mb-5">
-        <div class="container py-5">
-            <div class="row gx-5 gy-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-star text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Our Experience</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-users text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Cake Specialist</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-check text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Complete Project</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-mug-hot text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Happy Clients</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Facts End -->
 
 
     <!-- Footer Start -->

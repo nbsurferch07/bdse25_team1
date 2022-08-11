@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}家圖四必 - 格局圖風水辨識{% endblock title %}
 {% block src %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 {% include "_style.html" %}
 {% include "_style_picture.html" %}
 {% endblock src %}
@@ -79,11 +80,16 @@
                 <div>
                     <img class="file-upload-image" src="#" alt="your image" />
                 </div>
+
+                <div id="loading" style="display: none;">
+                    <img src="{{url_for('static', filename='img/Spinner-5.gif')}}">
+                </div>
+
                 <div class="image-title-wrap" style="display: inline;">
                     <button type="button" onclick="removeUpload()" class="remove-image">重新選擇</button>
                 </div>
                 <div class="image-title-wrap" style="display: inline;">
-                    <button type="submit" class="upload-image">開始分析</button>
+                    <button type="submit" class="upload-image" onclick="$('#loading').show();">開始分析</button>
                 </div>
             </div>
         </form>
