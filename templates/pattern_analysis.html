@@ -3,6 +3,7 @@
 {% block src %}
 {% include "_style.html" %}
 {% include "_style_picture.html" %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 {% endblock src %}
 {% block pattern %}
 <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link active">格局圖風水辨識</a>
@@ -31,6 +32,9 @@
         <div class="file-upload-content column">
             <div>
                 <img class="file-upload-image" src="#" alt="your image" />
+            </div>
+            <div id="loading" style="display: none;">
+                <img src="{{url_for('static', filename='img/Spinner-5.gif')}}">
             </div>
             <div class="image-title-wrap" style="display: inline;">
                 <button type="button" onclick="removeUpload()" class="remove-image">重新選擇</button>
