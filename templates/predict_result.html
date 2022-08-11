@@ -4,131 +4,66 @@
 {% include "_style.html" %}
 {% include "_style_picture.html" %}
 {% endblock src %}
-
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link active">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
-            </div>
+{% block price %}
+<a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">房價分析</a>
+{% endblock price %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">房價預測</h1>
+            <p>分析結果僅供參考</p>
         </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-            </div>
-        </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">房價預測</h1>
-                <p>分析結果僅供參考</p>
-            </div>
-        </div>
-
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-    <!-- predict Start -->
-    <div class="container-fluid pt-5" id="content1">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Result</h2>
-                <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
+<!-- predict Start -->
+<div class="container-fluid pt-5" id="content1">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Result</h2>
+            <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-4 pb-5" style="margin: auto;">
+                <h4 class="mb-4" style="text-align: center;">預測結果</h4>
+                <p style="text-align: center;">每坪價格：{{predict_result}}萬元</span>
             </div>
-            <div class="row gx-5">
-                <div class="col-lg-4 pb-5" style="margin: auto;">
-                    <h4 class="mb-4" style="text-align: center;">預測結果</h4>
-                    <p style="text-align: center;">每坪價格：{{predict_result}}萬元</span>
-                </div>
-                <div class="col-lg-12 pb-5">
-                    <h4 class="mb-4" style="text-align: center;">歷史結果</h4>
-                    <table class="table table-striped">
-                        <tr>
-                            {% for i in columns %}
-                            <th style="text-align: center;">{{ i }}</th>
-                            {% endfor %}
-                        </tr>
-                        {% for result in predict_options %}
-                        <tr style="text-align: center;">
-                            <td>{{result.city}}</td>
-                            <td>{{result.region}}</td>
-                            <td>{{result.bedroom}}</td>
-                            <td>{{result.bath}}</td>
-                            <td>{{result.liv}}</td>
-                            <td>{{result.gar_price}}</td>
-                            <td>{{result.house_age}}</td>
-                            <td>{{result.floor}}</td>
-                            <td>{{result.floor_all}}</td>
-                            <td>{{result.area}}</td>
-                            <td>{{result.house_type}}</td>
-                            <td>{{result.house}}</td>
-                            <td>{{result.material}}</td>
-                            <td>{{result.org}}</td>
-                            <td>{{result.predict_result}}</td>
-                        </tr>
+            <div class="col-lg-12 pb-5">
+                <h4 class="mb-4" style="text-align: center;">歷史結果</h4>
+                <table class="table table-striped">
+                    <tr>
+                        {% for i in columns %}
+                        <th style="text-align: center;">{{ i }}</th>
                         {% endfor %}
-                    </table>
-                </div>
+                    </tr>
+                    {% for result in predict_options %}
+                    <tr style="text-align: center;">
+                        <td>{{result.city}}</td>
+                        <td>{{result.region}}</td>
+                        <td>{{result.bedroom}}</td>
+                        <td>{{result.bath}}</td>
+                        <td>{{result.liv}}</td>
+                        <td>{{result.house_age}}</td>
+                        <td>{{result.gar}}</td>
+                        <td>{{result.floor}}</td>
+                        <td>{{result.floor_all}}</td>
+                        <td>{{result.area}}</td>
+                        <td>{{result.house_type}}</td>
+                        <td>{{result.house}}</td>
+                        <td>{{result.material}}</td>
+                        <td>{{result.org}}</td>
+                        <td>{{result.predict_result}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>
-    <!-- picture congnition End -->
-
-
-    <!-- Footer Start -->
-    {% include "_footer.html" %}
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
-    <!-- Template Javascript -->
-    <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    {% endblock body %}
-</body>
+</div>
+<!-- picture congnition End -->
+{% endblock body %}
 
 </html>

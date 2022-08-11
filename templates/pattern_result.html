@@ -4,151 +4,82 @@
 {% include "_style.html" %}
 {% include "_style_picture.html" %}
 {% endblock src %}
+{% block pattern %}
+<a href="{{url_for('pattern_reply')}}" class="nav-item nav-link active">格局圖風水辨識</a>
+{% endblock pattern %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">風水辨識</h1>
+            <p>分析結果僅供參考</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
 
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
+<!-- picture congnition Start -->
+<div class="container-fluid pt-5" id="content1">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Result</h2>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="min-height: 600px;">
+                <div class="position-relative h-100" style="text-align: center;">
+                    <img width="550" src="{{url_for('static',filename=file_path_result)}}" style="object-fit: cover; ">
                 </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item active">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
             </div>
-        </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-            </div>
-        </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">風水辨識</h1>
-                <p>分析結果僅供參考</p>
+            <div class="col-lg-6 pb-5">
+                <h4 class="mb-4" style="text-align: center;">辨識結果</h4>
+                <table class="table table-striped">
+                    <tr style="text-align: center;">
+                        {% for i in dicts %}
+                        <th style="text-align: center;"><span class="hovertext" data-hover="{{dicts[i]}}">{{ i }}</span>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>
+                            {{flag1}}
+                        </td>
+                        <td>
+                            {{flag2}}
+                        </td>
+                        <td>
+                            {{flag3}}
+                        </td>
+                    </tr>
+                </table>
+                <h4 class="mb-4" style="text-align: center;">歷史結果</h4>
+                <table class="table table-striped">
+                    <tr>
+                        {% for i in columns %}
+                        <th style="text-align: center;">{{ i }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for result in img_history %}
+                    <tr style="text-align: center;" id="links">
+                        <td>{{result.fengshui1}}</td>
+                        <td>{{result.fengshui2}}</td>
+                        <td>{{result.fengshui3}}</td>
+                        <td><a href="{{url_for('static',filename=result.images_origin)}}" target="_blank"
+                                title="{{result.images_origin.split('/')[-1]}}">{{result.images_origin.split('/')[-1]}}</a>
+                        </td>
+                        <td><a href="{{url_for('static',filename=result.images_result)}}" target="_blank"
+                                title="{{result.images_result.split('/')[-1]}}">{{result.images_result.split('/')[-1]}}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                </p>
             </div>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- picture congnition End -->
 
-    <!-- picture congnition Start -->
-    <div class="container-fluid pt-5" id="content1">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Result</h2>
-                <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
-            </div>
-            <div class="row gx-5">
-                <div class="col-lg-6 mb-5 mb-lg-0" style="min-height: 600px;">
-                    <div class="position-relative h-100" style="text-align: center;">
-                        <img width="550" src="{{url_for('static',filename=file_path_result)}}"
-                            style="object-fit: cover; ">
-                    </div>
-                </div>
-                <div class="col-lg-6 pb-5">
-                    <h4 class="mb-4" style="text-align: center;">辨識結果</h4>
-                    <table class="table table-striped">
-                        <tr style="text-align: center;">
-                            {% for i in dicts %}
-                            <th style="text-align: center;"><span class="hovertext" data-hover="{{dicts[i]}}">{{ i
-                                    }}</span></th>
-                            {% endfor %}
-                        </tr>
-                        <tr style="text-align: center;">
-                            <td>
-                                {{flag1}}
-                            </td>
-                            <td>
-                                {{flag2}}
-                            </td>
-                            <td>
-                                {{flag3}}
-                            </td>
-                        </tr>
-                        <!-- <tr>
-                            <img src="{{file_path_result}}">
-                        </tr> -->
-                    </table>
-                    <!-- <div class="col-lg-6 pb-5"> -->
-                    <h4 class="mb-4" style="text-align: center;">歷史結果</h4>
-                    <table class="table table-striped">
-                        <tr>
-                            {% for i in columns %}
-                            <th style="text-align: center;">{{ i }}</th>
-                            {% endfor %}
-                        </tr>
-                        {% for result in img_history %}
-                        <tr style="text-align: center;" id="links">
-                            <td>{{result.fengshui1}}</td>
-                            <td>{{result.fengshui2}}</td>
-                            <td>{{result.fengshui3}}</td>
-                            <td><a href="{{url_for('static',filename=result.images_origin)}}" target="_blank"
-                                    title="{{result.images_origin.split('/')[-1]}}">{{result.images_origin.split('/')[-1]}}</a>
-                            </td>
-                            <td><a href="{{url_for('static',filename=result.images_result)}}" target="_blank"
-                                    title="{{result.images_result.split('/')[-1]}}">{{result.images_result.split('/')[-1]}}</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                    <!--明曜的 vip 搖滾區-->
-                    </p>
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
-        <!-- picture congnition End -->
-
-
-        <!-- Footer Start -->
-        {% include "_footer.html" %}
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-        <!-- JavaScript Libraries -->
-        {% include "_js_lib.html" %}
-        <!-- Template Javascript -->
-        <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-        {% endblock body %}
-</body>
+{% endblock body %}
 
 </html>

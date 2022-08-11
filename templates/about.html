@@ -3,423 +3,263 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link active">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
-            </div>
-            <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-                <div class="dropdown-menu m-0">
-                    <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                    <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                    <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-                </div>
-            </div>
+{% block about %}
+<a href="{{url_for('about')}}" class="nav-item nav-link active">關於我們</a>
+{% endblock about %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">關於我們</h1>
+            <a href="#content1">Purpose</a>
+            <i class="far fa-square text-primary px-2"></i>
+            <a href="#content2">Target Audience</a>
+            <i class="far fa-square text-primary px-2"></i>
+            <a href="#content3">Team Members</a>
         </div>
-    </nav>
-    <!-- Navbar End -->
+    </div>
+</div>
+<!-- Page Header End -->
 
+<!-- About Start -->
+<div class="container-fluid pt-5" id="content1">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Purpose</h2>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static',filename='img/house-2.jpg')}}"
+                        style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pb-5">
+                <h4 class="mb-4">研究動機</h4>
+                <p class="mb-5">
+                    統計顯示2021年台灣人平均買第一間房的年齡在逐漸攀高，<br>
+                    大多數人在35-40歲時買第一間房，<br>
+                    在還完30年房貸之後，也已近70歲，對一般民眾而言幾乎沒有能力可以換房。<br>
+                    因此我們希望提供給對房屋有需求的消費者們一個快速簡便的工具，<br>
+                    讓消費者們可以在正式購買或租賃前有一個可以參考的工具，<br>
+                    避免發生購買後發現房屋缺點而後悔卻無法換屋的問題。
+                </p>
+                <h4 class="mb-4">研究目的</h4>
+                <p class="mb-5">
+                    關於房屋風水通常都需要去詢問專業的風水師才能得知，<br>
+                    藉由上傳房屋的格局平面圖，進行風水分析，讓使用者可以輕易的知道房屋的風水優劣，<br>
 
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">關於我們</h1>
-                <a href="#content1">Purpose</a>
-                <i class="far fa-square text-primary px-2"></i>
-                <a href="#content2">Target Audience</a>
-                <i class="far fa-square text-primary px-2"></i>
-                <a href="#content3">Team Members</a>
+                    房子有好的風水能有效地提高成交率，風水是房子保值的重要因素之一。<br>
+                    因此建商或投資客，也可以有效利用我們提供的工具，<br>
+                </p>
             </div>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- About End -->
+<br id="content2">
+<br>
+<br>
 
-
-    <!-- About Start -->
-    <div class="container-fluid pt-5" id="content1">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Purpose</h2>
-                <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
-            </div>
-            <div class="row gx-5">
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{ url_for('static',filename='img/house-2.jpg')}}"
-                            style="object-fit: cover;">
+<!-- features Start -->
+<div class="container-fluid py-5 bg-img">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-4 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Target Audience</h2>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+            <div class="testimonial-item bg-dark text-white border-inner p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="ps-3">
+                        <h4 class="text-primary text-uppercase mb-1">首購族</h4>
                     </div>
                 </div>
-                <div class="col-lg-6 pb-5">
-                    <h4 class="mb-4">研究動機</h4>
-                    <p class="mb-5">
-                        統計顯示2021年台灣人平均買第一間房的年齡在逐漸攀高，<br>
-                        大多數人在35-40歲時買第一間房，<br>
-                        在還完30年房貸之後，也已近70歲，對一般民眾而言幾乎沒有能力可以換房。<br>
-                        因此我們希望提供給對房屋有需求的消費者們一個快速簡便的工具，<br>
-                        讓消費者們可以在正式購買或租賃前有一個可以參考的工具，<br>
-                        避免發生購買後發現房屋缺點而後悔卻無法換屋的問題。
-                    </p>
-                    <h4 class="mb-4">研究目的</h4>
-                    <p class="mb-5">
-                        關於房屋風水通常都需要去詢問專業的風水師才能得知，<br>
-                        藉由上傳房屋的格局平面圖，進行風水分析，讓使用者可以輕易的知道房屋的風水優劣，<br>
-
-                        房子有好的風水能有效地提高成交率，風水是房子保值的重要因素之一。<br>
-                        因此建商或投資客，也可以有效利用我們提供的工具，<br>
-                    </p>
-                    <!-- <div class="row g-5">
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-heartbeat fa-2x text-white"></i>
-                            </div>
-                            <h4 class="text-uppercase">100% Healthy</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna
-                                dolor vero</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-award fa-2x text-white"></i>
-                            </div>
-                            <h4 class="text-uppercase">Award Winning</h4>
-                            <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna
-                                dolor vero</p>
-                        </div>
-                    </div> -->
+                <p class="mb-0">房市交易買家的主力之一<br><br><br>
+                </p>
+            </div>
+            <div class="testimonial-item bg-dark text-white border-inner p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="ps-3">
+                        <h4 class="text-primary text-uppercase mb-1">換屋族</h4>
+                    </div>
                 </div>
+                <p class="mb-0">房市交易買家的最大宗，覺得風水形局種種，會影響平安財利。<br><br>
+                </p>
+            </div>
+            <div class="testimonial-item bg-dark text-white border-inner p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="ps-3">
+                        <h4 class="text-primary text-uppercase mb-1">投資者</h4>
+                    </div>
+                </div>
+                <p class="mb-0">房子有好的風水能提高成交率，未來出售時會較少阻力，獲利可能較大。<br><br>
+                </p>
+            </div>
+            <div class="testimonial-item bg-dark text-white border-inner p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="ps-3">
+                        <h4 class="text-primary text-uppercase mb-1">建商</h4>
+                    </div>
+                </div>
+                <p class="mb-0">建商多會注意細節，避免規劃失誤，銷售遇到阻力會減少。<br>因此更在意手上數十戶或百戶的房屋風水優劣。
+                </p>
             </div>
         </div>
     </div>
-    <!-- About End -->
-    <br id="content2">
-    <br>
-    <br>
+</div>
+<!-- Testimonial End -->
 
-    <!-- features Start -->
-    <div class="container-fluid py-5 bg-img">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-4 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Target Audience</h2>
-                <!-- <h1 class="display-4 text-uppercase text-white">Super Crispy Cakes</h1> -->
-            </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <!-- <img class="img-fluid flex-shrink-0" src="img/testimonial-1.jpg"
-                style="width: 60px; height: 60px;"> -->
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">首購族</h4>
-                            <!-- <span>Profession</span> -->
-                        </div>
-                    </div>
-                    <p class="mb-0">房市交易買家的主力之一<br><br><br>
-                    </p>
-                    <!-- <a class="text-uppercase text-yellow" href="./pattern.html"><br>Read More <i
-                    class="bi bi-arrow-right"></i></a> -->
-                </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <!-- <img class="img-fluid flex-shrink-0" src="img/testimonial-2.jpg"
-                style="width: 60px; height: 60px;"> -->
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">換屋族</h4>
-                            <!-- <span>Profession</span> -->
-                        </div>
-                    </div>
-                    <p class="mb-0">房市交易買家的最大宗，覺得風水形局種種，會影響平安財利。<br><br>
-                    </p>
-                    <!-- <a class="text-uppercase text-yellow" href="./mortgage.html"><br>Read More <i
-                        class="bi bi-arrow-right"></i></a> -->
-                </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <!-- <img class="img-fluid flex-shrink-0" src="img/testimonial-3.jpg"
-                style="width: 60px; height: 60px;"> -->
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">投資者</h4>
-                            <!-- <span>Profession</span> -->
-                        </div>
-                    </div>
-                    <p class="mb-0">房子有好的風水能提高成交率，未來出售時會較少阻力，獲利可能較大。<br><br>
-                    </p>
-                    <!-- <a class="text-uppercase text-yellow" href="./affordable.html"><br>Read More <i
-                        class="bi bi-arrow-right"></i></a> -->
-                </div>
-                <div class="testimonial-item bg-dark text-white border-inner p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="ps-3">
-                            <h4 class="text-primary text-uppercase mb-1">建商</h4>
-                            <!-- <span>Profession</span> -->
-                        </div>
-                    </div>
-                    <p class="mb-0">建商多會注意細節，避免規劃失誤，銷售遇到阻力會減少。<br>因此更在意手上數十戶或百戶的房屋風水優劣。
-                    </p>
-                    <!-- <a class="text-uppercase text-yellow" href="">Read More <i
-                        class="bi bi-arrow-right"></i></a> -->
-                </div>
-            </div>
+
+<!-- Team Start -->
+<div class="container-fluid py-5" id="content3">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Team Members</h2>
         </div>
-    </div>
-    <!-- Testimonial End -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid py-5" id="content3">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Team Members</h2>
-                <!-- <h1 class="display-4 text-uppercase">Our Developer</h1> -->
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-surfer1.jpg')}}"
+                            alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://github.com/nobodysurfer07"><i class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">楊致皓</h4>
+                        <p class="text-white m-0">數據分析師</p>
+                    </div>
+                </div>
             </div>
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-surfer1.jpg')}}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/nobodysurfer07"><i
-                                            class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_martini.jpg')}}"
+                            alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://github.com/CHMartini"><i class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">楊致皓</h4>
-                            <p class="text-white m-0">數據分析師</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_martini.jpg')}}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/CHMartini"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">詹文孔</h4>
-                            <p class="text-white m-0">數據分析師</p>
-                        </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">詹文孔</h4>
+                        <p class="text-white m-0">數據分析師</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-miyang.jpg')}}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://www.linkedin.com/in/mingyao-895565160"><i
-                                            class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-miyang.jpg')}}" alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://www.linkedin.com/in/mingyao-895565160"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">李明曜</h4>
-                            <p class="text-white m-0">後端工程師</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_longred.jpg') }}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/Roger13579"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">陳長宏</h4>
-                            <p class="text-white m-0">系統工程師</p>
-                        </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">李明曜</h4>
+                        <p class="text-white m-0">後端工程師</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-mina.JPG') }}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://github.com/YiYenHsu"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://www.facebook.com/mina.shu.1/"><i
-                                            class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="https://www.linkedin.com/in/yi-yen-hsu-b57166186/"><i
-                                            class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team_longred.jpg') }}"
+                            alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://github.com/Roger13579"><i class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
-                        </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">徐苡晏</h4>
-                            <p class="text-white m-0">前端工程師</p>
                         </div>
                     </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">陳長宏</h4>
+                        <p class="text-white m-0">系統工程師</p>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-p.jpg') }}" alt="">
-                            <div
-                                class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-github fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
-                                        href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-mina.JPG') }}" alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://github.com/YiYenHsu"><i class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://www.facebook.com/mina.shu.1/"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1"
+                                    href="https://www.linkedin.com/in/yi-yen-hsu-b57166186/"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
                             </div>
                         </div>
-                        <div class="bg-dark border-inner text-center p-4">
-                            <h4 class="text-uppercase text-primary">游霈彤</h4>
-                            <p class="text-white m-0">系統工程師</p>
+                    </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">徐苡晏</h4>
+                        <p class="text-white m-0">前端工程師</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ url_for('static',filename='img/team-p.jpg') }}" alt="">
+                        <div
+                            class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-github fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
                         </div>
+                    </div>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">游霈彤</h4>
+                        <p class="text-white m-0">系統工程師</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Team End -->
-
-
-    <!-- Facts Start -->
-    <!-- <div class="container-fluid bg-img py-5 mb-5">
-        <div class="container py-5">
-            <div class="row gx-5 gy-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-star text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Our Experience</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-users text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Cake Specialist</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-check text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Complete Project</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex">
-                        <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-mug-hot text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h6 class="text-primary text-uppercase">Happy Clients</h6>
-                            <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Facts End -->
-
-
-    <!-- Footer Start -->
-    {% include "_footer.html" %}
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
-    <!-- Template Javascript -->
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    {% endblock body %}
-</body>
+</div>
+<!-- Team End -->
+{% endblock body %}
 
 </html>
