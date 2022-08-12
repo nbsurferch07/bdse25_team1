@@ -22,7 +22,7 @@
 
 <!-- picture congnition Start -->
 <div class="file-upload">
-    <form action="/pattern_analysis" enctype="multipart/form-data" method="post">
+    <form action="/bdse25_team1/pattern_analysis" enctype="multipart/form-data" method="post">
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' name="file" onchange="readURL(this);" accept="image/*" />
             <div class="drag-text">
@@ -40,7 +40,7 @@
                 <button type="button" onclick="removeUpload()" class="remove-image">重新選擇</button>
             </div>
             <div class="image-title-wrap" style="display: inline;">
-                <button type="submit" class="upload-image">開始分析</button>
+                <button type="submit" class="upload-image" onclick="$('#loading').show();">開始分析</button>
             </div>
         </div>
     </form>

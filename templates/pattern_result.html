@@ -35,11 +35,15 @@
                 <h4 class="mb-4" style="text-align: center;">辨識結果</h4>
                 <table class="table table-striped">
                     <tr style="text-align: center;">
-                        {% for i in dicts %}
-                        <th style="text-align: center;"><span class="hovertext" data-hover="{{dicts[i]}}">{{ i }}</span>
-                        </th>
-                        {% endfor %}
+                    {% for i in dicts %}
+                    <th style="text-align: center;">
+                        <div class="fengshui">{{ i | safe}}
+                            <span class="fengshuitext">{{ dicts[i] | safe}}</span>
+                        </div>
+                    </th>
+                    {% endfor %}
                     </tr>
+
                     <tr style="text-align: center;">
                         <td>
                             {{flag1}}
@@ -52,6 +56,7 @@
                         </td>
                     </tr>
                 </table>
+
                 <h4 class="mb-4" style="text-align: center;">歷史結果</h4>
                 <table class="table table-striped">
                     <tr>
