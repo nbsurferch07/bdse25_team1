@@ -17,7 +17,7 @@ EASYOCR_READER = easyocr.Reader(['ch_tra','en'])
 # 建立Application物件靜態檔案處理設定
 app = Flask(__name__,
             static_folder="static",
-            static_url_path="/bdse25_team1"
+            static_url_path="/"
             )
 
 

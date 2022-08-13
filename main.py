@@ -193,8 +193,8 @@ def predict_analysis():
 @app.route("/predict_result")
 def predict_result():
     # 從資料庫抓歷史紀錄
-    columns = ['預測地點', '鄉鎮市區', '房間數量', '廳間數量', '衛浴數量', '車位總價', '屋齡', '移轉層次', '總樓層數',
-               '建物坪數', '交易標的', '建物型態', '主要建材', '有無管理組織', '預測結果']
+    columns = ['預測地點', '鄉鎮市區', '房間數量', '廳間數量', '衛浴數量', '屋齡', '建物坪數', 
+               '車位數量','居住樓層', '總樓層數', '交易標的', '建物型態', '主要建材', '有無管理組織', '預測結果']
     # 建立session
     SqlalchemySession = sessionmaker(bind=db.engine)
     db_session = SqlalchemySession()
