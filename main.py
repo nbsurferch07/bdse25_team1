@@ -12,32 +12,32 @@ import pattern_model.fengshui_main as pattern_mod
 
 
 # Route
-@app.route('/bdse25_team1')
+@app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/bdse25_team1/about')
+@app.route('/about')
 def about():
     return render_template('about.html')
 
-@app.route('/bdse25_team1/info')
+@app.route('/info')
 def info():
     return render_template('info.html')
 
-@app.route('/bdse25_team1/mortgage')
+@app.route('/mortgage')
 def mortgage():
     return render_template('mortgage.html')
 
 
-@app.route('/bdse25_team1/affordable')
+@app.route('/affordable')
 def affordable():
     return render_template('affordable.html')
 
-@app.route('/bdse25_team1/contact')
+@app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-@app.route('/bdse25_team1/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
@@ -57,11 +57,11 @@ def login():
                 if url != None:
                     return redirect(f"/{url}")
                 else:
-                    return redirect("/bdse25_team1")
+                    return redirect("/")
         # 找不到帳號或密碼，導回登入頁面
-        return redirect("/bdse25_team1/login")
+        return redirect("/login")
 
-@app.route('/bdse25_team1/register', methods=["GET", "POST"])
+@app.route('/register', methods=["GET", "POST"])
 def register():
     # if request.method == 'GET':
     #     return render_template('register.html')
@@ -90,20 +90,20 @@ def register():
         db_session.add(user)
         db_session.commit()
         flash("註冊成功!")
-        return redirect("/bdse25_team1/login")
+        return redirect("/login")
     return render_template('register.html', form=form)
 
-@app.route('/bdse25_team1/pattern')
+@app.route('/pattern')
 def pattern_reply():
     # 若已登入直接跳轉至預測頁面
     if "name" in session:
         return render_template('pattern_analysis.html')
     # 尚未登入則記錄網址，登入後跳轉至該預測頁面
     else:
-        session['url'] = 'bdse25_team1/pattern'
+        session['url'] = 'pattern'
         return render_template('pattern.html')
 
-@app.route('/bdse25_team1/pattern_analysis', methods=['POST'])
+@app.route('/pattern_analysis', methods=['POST'])
 def pattern_analysis():
     # 前端取得圖片
     file = request.files['file']
@@ -149,17 +149,17 @@ def pattern_analysis():
                             columns=columns,
                             img_history=img_history)
 
-@app.route('/bdse25_team1/predict')
+@app.route('/predict')
 def predict_reply():
     # 若已登入直接跳轉至預測頁面
     if "name" in session:
         return render_template('predict_analysis.html')
     # 尚未登入則記錄網址，登入後跳轉至該預測頁面
     else:
-        session['url'] = 'bdse25_team1/predict'
+        session['url'] = 'predict'
         return render_template('predict.html')
 
-@app.route('/bdse25_team1/predict_analysis', methods=['GET', 'POST'])
+@app.route('/predict_analysis', methods=['GET', 'POST'])
 def predict_analysis():
     # 從前端取得輸入條件
     name = session.get('name')
@@ -188,9 +188,9 @@ def predict_analysis():
                       floor, floor_all, area, house_type, house, material, org, predict_result[0])
     db_session.add(predict)
     db_session.commit()
-    return redirect('/bdse25_team1/predict_result')
+    return redirect('/predict_result')
 
-@app.route("/bdse25_team1/predict_result")
+@app.route("/predict_result")
 def predict_result():
     # 從資料庫抓歷史紀錄
     columns = ['預測地點', '鄉鎮市區', '房間數量', '廳間數量', '衛浴數量', '車位總價', '屋齡', '移轉層次', '總樓層數',
@@ -208,21 +208,21 @@ def predict_result():
                             predict_options=predict_options,
                             predict_result=predict_result)
 
-@app.route('/bdse25_team1/mortgate_calculator')
+@app.route('/mortgate_calculator')
 def mortgate_calculator():
     return render_template('mortgage.html')
 
-@app.route('/bdse25_team1/affordable_calculator')
+@app.route('/affordable_calculator')
 def affordable_calculator():
     return render_template('affordable.html')
 
 # 登出
-@app.route("/bdse25_team1/signout")
+@app.route("/signout")
 def signout():
     session.pop("name", None)
     session.pop("url", None)
-    return redirect("/bdse25_team1")
+    return redirect("/")
 
 # 啟動伺服器
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
