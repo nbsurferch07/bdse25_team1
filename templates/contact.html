@@ -3,138 +3,77 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link active">聯絡我們</a>
-            </div>
-        </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-            </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">聯絡我們</h1>
-            </div>
+{% block contact %}
+<a href="{{url_for('contact')}}" class="nav-item nav-link active">聯絡我們</a>
+{% endblock contact %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">聯絡我們</h1>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-
-    <!-- Contact Start -->
-    <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
-        <div class="container">
-            <div class="row g-5 mb-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="bg-primary border-inner text-center text-white p-5">
-                        <i class="bi bi-geo-alt fs-1 text-white"></i>
-                        <h6 class="text-uppercase my-2">Our Location</h6>
-                        <span>320 桃園市中壢區新生路二段 421 號</span>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="bg-primary border-inner text-center text-white p-5">
-                        <i class="bi bi-envelope-open fs-1 text-white"></i>
-                        <h6 class="text-uppercase my-2">Email Us</h6>
-                        <span>iSpan@example.com</span>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="bg-primary border-inner text-center text-white p-5">
-                        <i class="bi bi-phone-vibrate fs-1 text-white"></i>
-                        <h6 class="text-uppercase my-2">Call Us</h6>
-                        <span>0987 654 321</span>
-                    </div>
+<!-- Contact Start -->
+<div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
+    <div class="container">
+        <div class="row g-5 mb-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="bg-primary border-inner text-center text-white p-5">
+                    <i class="bi bi-geo-alt fs-1 text-white"></i>
+                    <h6 class="text-uppercase my-2">Our Location</h6>
+                    <span>320 桃園市中壢區新生路二段 421 號</span>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="姓名"
-                                    style="height: 55px;">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Email"
-                                    style="height: 55px;">
-                            </div>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="主旨"
-                                    style="height: 55px;">
-                            </div>
-                            <div class="col-sm-12">
-                                <textarea class="form-control bg-light border-0 px-4 py-3" rows="4"
-                                    placeholder="內容"></textarea>
-                            </div>
-                            <div class="col-sm-12">
-                                <button class="btn btn-primary border-inner w-100 py-3" type="submit">送出訊息</button>
-                            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="bg-primary border-inner text-center text-white p-5">
+                    <i class="bi bi-envelope-open fs-1 text-white"></i>
+                    <h6 class="text-uppercase my-2">Email Us</h6>
+                    <span>iSpan@example.com</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="bg-primary border-inner text-center text-white p-5">
+                    <i class="bi bi-phone-vibrate fs-1 text-white"></i>
+                    <h6 class="text-uppercase my-2">Call Us</h6>
+                    <span>0987 654 321</span>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control bg-light border-0 px-4" placeholder="姓名"
+                                style="height: 55px;">
                         </div>
-                    </form>
-                </div>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control bg-light border-0 px-4" placeholder="Email"
+                                style="height: 55px;">
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control bg-light border-0 px-4" placeholder="主旨"
+                                style="height: 55px;">
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea class="form-control bg-light border-0 px-4 py-3" rows="4"
+                                placeholder="內容"></textarea>
+                        </div>
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary border-inner w-100 py-3" type="submit">送出訊息</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-
-
-    <!-- Footer Start -->
-    {% include "_footer.html" %}
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
-    <!-- Template Javascript -->
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    {% endblock body %}
-</body>
+</div>
+<!-- Contact End -->
+{% endblock body %}
 
 </html>

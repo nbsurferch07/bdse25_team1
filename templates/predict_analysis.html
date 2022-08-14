@@ -3,195 +3,132 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
+{% block price %}
+<a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">房價分析</a>
+{% endblock price %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">房價預測</h1>
 
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link active">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
-            </div>
+            <p>分析結果僅供參考</p>
         </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-            </div>
-        </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
+    </div>
+</div>
+<!-- Page Header End -->
 
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
+<!-- predict Start -->
+<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+    <h2 class="text-primary font-secondary">Start</h2>
+    <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
+</div>
+<div class="container">
+    <form action="/predict_analysis" method="post">
         <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">房價預測</h1>
+            <div class="col">
+                <div class="mr-4" style="text-align: center;">
+                    <label for="city"><b>預測地點</b></label>
+                    <select id="city-list" name="city" required style="width: 250px; margin: 10px;;"
+                        onchange="changeCity(this.selectedIndex)">
+                    </select>
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="region"><b>鄉鎮市區</b></label>
+                    <select id="region-list" name="region" required style="width: 250px; margin: 10px;">
+                    </select>
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="bedroom"><b>房間數量</b></label>
+                    <input type="number" name="bedroom" id="bedroom" min="0" max="20" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
 
-                <p>分析結果僅供參考</p>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="liv"><b>廳間數量</b></label>
+                    <input type="number" name="liv" id="liv" min="0" max="20" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+
+                <div class="mr-4" style="text-align: center;">
+                    <label for="bath"><b>衛浴數量</b></label>
+                    <input type="number" name="bath" id="bath" min="0" max="20" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="house_age" style="margin:0 1em 0 1em ;"><b>屋齡</b></label>
+                    <input type="number" name="house_age" id="house_age" min="0" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="area"><b>建物坪數</b></label>
+                    <input type="number" name="area" id="area" min="0" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mr-4" style="text-align: center;">
+                    <label for="gar"><b>車位數量</b></label>
+                    <input type="number" name="gar" id="gar" min="0" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="floor"><b>居住樓層</b></label>
+                    <input type="number" name="floor" id="floor" min="0" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="floor_all"><b>總樓層數</b></label>
+                    <input type="number" name="floor_all" id="floor_all" min="0" onkeydown="return true;" required
+                        style="width: 250px; margin: 10px;">
+                </div>
+
+                <div class="mr-4" style="text-align: center;">
+                    <label for="house_type"><b>交易標的</b></label>
+                    <select id="house_type" name="house_type" required style="width: 250px; margin: 10px;">
+                        <option value="房地(土地+建物)">房地(土地+建物)</option>
+                        <option value="房地(土地+建物)+車位">房地(土地+建物)+車位</option>
+                        <option value="建物">建物</option>
+                    </select>
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="house"><b>建物型態</b></label>
+                    <select id="house" name="house" required style="width: 250px; margin: 10px;">
+                        <option value="住宅大樓(11層含以上有電梯)">住宅大樓(11層含以上有電梯)</option>
+                        <option value="華廈(10層含以下有電梯)">華廈(10層含以下有電梯)</option>
+                        <option value="公寓(5樓含以下無電梯)">公寓(5樓含以下無電梯)</option>
+                        <option value="套房(1房1廳1衛)">套房(1房1廳1衛)</option>
+                        <option value="透天厝">透天厝</option>
+                    </select>
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="material"><b>主要建材</b></label>
+                    <select id="material" name="material" required style="width: 250px; margin: 10px;">
+                        <option value="鋼骨鋼筋混凝土造">鋼骨鋼筋混凝土造</option>
+                        <option value="鋼骨混凝土造">鋼骨混凝土造</option>
+                        <option value="鋼骨造">鋼骨造</option>
+                        <option value="鋼筋混凝土造">鋼筋混凝土造</option>
+                        <option value="加強磚造">加強磚造</option>
+                    </select>
+                </div>
+                <div class="mr-4" style="text-align: center;">
+                    <label for="org"><b>管理組織</b></label>
+                    <select id="material" name="org" required style="width: 250px; margin: 10px;">
+                        <option value="有">有</option>
+                        <option value="無">無</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Page Header End -->
+        <div style="text-align: center; margin-top: 2em;">
+            <button class="btn btn2">開始預測</button>
+        </div>
+    </form>
+</div>
 
-    <!-- predict Start -->
-    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-        <h2 class="text-primary font-secondary">Start</h2>
-        <!-- <h1 class="display-4 text-uppercase">Welcome To Pattern Map</h1> -->
-    </div>
-    <div class="container">
-        <form action="/predict_analysis" method="post">
-            <div class="row">
-                <div class="col">
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="city"><b>預測地點</b></label>
-                        <select id="city-list" name="city" required style="width: 250px; margin: 10px;;"
-                            onchange="changeCity(this.selectedIndex)">
-                        </select>
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="region"><b>鄉鎮市區</b></label>
-                        <select id="region-list" name="region" required style="width: 250px; margin: 10px;">
-                        </select>
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="bedroom"><b>房間數量</b></label>
-                        <input type="number" name="bedroom" id="bedroom" min="0" max="20" onkeydown="return false;"
-                            required style="width: 250px; margin: 10px;">
-                    </div>
-
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="liv"><b>廳間數量</b></label>
-                        <input type="number" name="liv" id="liv" min="0" max="20" onkeydown="return false;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="bath"><b>衛浴數量</b></label>
-                        <input type="number" name="bath" id="bath" min="0" max="20" onkeydown="return false;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="gar_price"><b>車位總價</b></label>
-                        <input type="number" name="gar_price" id="gar_price" min="0" onkeydown="return true;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="house_age" style="margin:0 1em 0 1em ;"><b>屋齡</b></label>
-                        <input type="number" name="house_age" id="house_age" min="0" onkeydown="return true;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="floor" style="margin:0 1em 0 1em ;"><b>移轉層次</b></label>
-                        <input type="number" name="floor" id="floor" min="0" onkeydown="return true;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="floor_all" style="margin:0 1em 0 1em ;"><b>總樓層數</b></label>
-                        <input type="number" name="floor_all" id="floor_all" min="0" onkeydown="return true;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="area" style="margin:0 1em 0 1em ;"><b>建物坪數</b></label>
-                        <input type="number" name="area" id="area" min="0" onkeydown="return true;" required
-                            style="width: 250px; margin: 10px;">
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="house_type" style="margin:0 1em 0 1em ;"><b>交易標的</b></label>
-                        <select id="house_type" name="house_type" required style="width: 250px; margin: 10px;">
-                            <option value="房地(土地+建物)">房地(土地+建物)</option>
-                            <option value="房地(土地+建物)+車位">房地(土地+建物)+車位</option>
-                            <option value="建物">建物</option>
-                        </select>
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="house" style="margin:0 1em 0 1em ;"><b>建物型態</b></label>
-                        <select id="house" name="house" required style="width: 250px; margin: 10px;">
-                            <option value="住宅大樓(11層含以上有電梯)">住宅大樓(11層含以上有電梯)</option>
-                            <option value="華廈(10層含以下有電梯)">華廈(10層含以下有電梯)</option>
-                            <option value="公寓(5樓含以下無電梯)">公寓(5樓含以下無電梯)</option>
-                            <option value="套房(1房1廳1衛)">套房(1房1廳1衛)</option>
-                            <option value="透天厝">透天厝</option>
-                        </select>
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="material" style="margin:0 1em 0 1em ;"><b>主要建材</b></label>
-                        <select id="material" name="material" required style="width: 250px; margin: 10px;">
-                            <option value="鋼骨鋼筋混凝土造">鋼骨鋼筋混凝土造</option>
-                            <option value="鋼骨混凝土造">鋼骨混凝土造</option>
-                            <option value="鋼骨造">鋼骨造</option>
-                            <option value="鋼筋混凝土造">鋼筋混凝土造</option>
-                            <option value="加強磚造">加強磚造</option>
-                        </select>
-                    </div>
-                    <div class="mr-4" style="text-align: center;">
-                        <label for="org"><b>有無管理組織</b></label>
-                        <select id="material" name="org" required style="width: 250px; margin: 10px;">
-                            <option value="有">有</option>
-                            <option value="無">無</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 2em;">
-                <button class="btn btn2">開始預測</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- picture congnition End -->
-    <!-- margin: 30px 10px 10px 165px ;  -->
-
-    <!-- Footer Start -->
-    {% include "_footer.html" %}
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
-    <!-- Template Javascript -->
-    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    <script src="{{ url_for('static',filename='js/region.js')}}"></script>
-    {% endblock body %}
-</body>
+<!-- picture congnition End -->
+<script src="{{ url_for('static',filename='js/region.js')}}"></script>
+{% endblock body %}
 
 </html>

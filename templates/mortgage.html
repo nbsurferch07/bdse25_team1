@@ -3,260 +3,177 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item active">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
-            </div>
-        </div>
-        <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-            <div class="dropdown-menu m-0">
-                <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-            </div>
-        </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">房貸計算機</h1>
-                <p>輸入以下欄位，即為您估算您每月應繳的房貸金額</p>
-            </div>
+{% block cal %}
+<a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">計算機</a>
+{% endblock cal %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">房貸計算機</h1>
+            <p>輸入以下欄位，即為您估算您每月應繳的房貸金額</p>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
 
-    <!-- <onload="CheckHCR();"> -->
-        <div class="container">
-            <div id="inout" class="row mt-5">
-                <div id="inputs" class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div class="row mt-5 inputoption text-center">
-                                <div class="col ml-4 pt-3">
-                                    <i></i>
-                                </div>
-                            </div>
-                            <div class="row inputoption text-right">
-                                <div class="col ml-4">
-                                    <i>房屋總價</i>
-                                </div>
-                                <div class="col mr-4">
-                                    <input type="text" id="totalPrice" value="$8,000,000"
-                                        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
-                                        oninput="DownPayment(this.value, document.getElementById('downPayment').value, document.getElementById('loan').value);" />
-                                    <span>元</span>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row mb-3 inputoption text-right">
-                                <div class="col ml-4 pb-4">
-                                    <i>自備款</i>
-                                </div>
-                                <div class="col mr-4">
-                                    <input type="text" id="downPayment" value="$1,000,000"
-                                        pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
-                                        oninput="DownPayment(document.getElementById('totalPrice').value, this.value, document.getElementById('loan').value);" />
-                                    <span>元</span>
-                                </div>
-                            </div>
+<!-- <onload="CheckHCR();"> -->
+<div class="container">
+    <div id="inout" class="row mt-5">
+        <div id="inputs" class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="row mt-5 inputoption text-center">
+                        <div class="col ml-4 pt-3">
+                            <i></i>
                         </div>
                     </div>
-                    <hr class="mb-4 mr-4 ml-4 mb-4" />
-                    <div class="row mb-3">
+                    <div class="row inputoption text-right">
                         <div class="col ml-4">
-                            貸款總額:
+                            <i>房屋總價</i>
                         </div>
                         <div class="col mr-4">
-                            <input type="text" id="loan" value="$7,000,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                                data-type="currency" readonly />
+                            <input type="text" id="totalPrice" value="$8,000,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                                data-type="currency"
+                                oninput="DownPayment(this.value, document.getElementById('downPayment').value, document.getElementById('loan').value);" />
                             <span>元</span>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col ml-4">
-                            貸款年利率:
+                    <br>
+                    <div class="row mb-3 inputoption text-right">
+                        <div class="col ml-4 pb-4">
+                            <i>自備款</i>
                         </div>
                         <div class="col mr-4">
-                            <input type="text" id="rate" value="1.50" oninput="validateRate(this.value)" />
-                            <span>%</span>
+                            <input type="text" id="downPayment" value="$1,000,000"
+                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
+                                oninput="DownPayment(document.getElementById('totalPrice').value, this.value, document.getElementById('loan').value);" />
+                            <span>元</span>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col ml-4">
-                            貸款期限:
-                        </div>
-                        <div class="col mr-4">
-                            <input type="number" id="term" value="360" min="1" max="360"
-                                oninput="validity.valid||(value='');" />
-                            <span>月</span>
-                        </div>
-                    </div>
-                    <div id="cbp" class="row mr-4 justify-content-end">
-                        <button id="calcbtn" class="btn calBtn bg-primary m-2  btn-warning"
-                            onclick="Calculate(document.getElementById('loan').value,document.getElementById('term').value,document.getElementById('rate').value)">
-                            開始計算
-                        </button>
-                    </div>
-                    <!-- <div class="row mr-4 mb-5 justify-content-end">
+                </div>
+            </div>
+            <hr class="mb-4 mr-4 ml-4 mb-4" />
+            <div class="row mb-3">
+                <div class="col ml-4">
+                    貸款總額:
+                </div>
+                <div class="col mr-4">
+                    <input type="text" id="loan" value="$7,000,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                        data-type="currency" readonly />
+                    <span>元</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col ml-4">
+                    貸款年利率:
+                </div>
+                <div class="col mr-4">
+                    <input type="text" id="rate" value="1.50" oninput="validateRate(this.value)" />
+                    <span>%</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col ml-4">
+                    貸款期限:
+                </div>
+                <div class="col mr-4">
+                    <input type="number" id="term" value="360" min="1" max="360"
+                        oninput="validity.valid||(value='');" />
+                    <span>月</span>
+                </div>
+            </div>
+            <div id="cbp" class="row mr-4 justify-content-end">
+                <button id="calcbtn" class="btn calBtn bg-primary m-2  btn-warning"
+                    onclick="Calculate(document.getElementById('loan').value,document.getElementById('term').value,document.getElementById('rate').value)">
+                    開始計算
+                </button>
+            </div>
+            <!-- <div class="row mr-4 mb-5 justify-content-end">
                             <button id="resetbtn" class="btn btn-danger mt-3" onclick="Reset()">
                                 重新計算
                             </button>
                         </div> -->
-                </div>
-                <div id="outputs" class="col">
-                    <div class="row">
-                        <div id="m1" class="col">
-                            <div id="m2" class="row justify-content-center mt-4">
-                                <h1>每月應繳房貸</h1>
-                            </div>
-                            <div class="row justify-content-center pt-5 pb-5">
-                                <h1 id="monthlypayment">$0.00</h1>
-                            </div>
-                        </div>
+        </div>
+        <div id="outputs" class="col">
+            <div class="row">
+                <div id="m1" class="col">
+                    <div id="m2" class="row justify-content-center mt-4">
+                        <h1>每月應繳房貸</h1>
                     </div>
+                    <div class="row justify-content-center pt-5 pb-5">
+                        <h1 id="monthlypayment">$0.00</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div class="row">
+                        <div class="col ml-4">
+                            <h3>本金總額</h3>
+                        </div>
                         <div class="col">
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>本金總額</h3>
-                                </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalprincipal">$0.00</h3>
-                                    </div>
-                                </div>
+                            <div class="row justify-content-end pr-5">
+                                <h3 id="totalprincipal">$0.00</h3>
                             </div>
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>利息總額</h3>
-                                </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalinterest">$0.00</h3>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col ml-4">
+                            <h3>利息總額</h3>
+                        </div>
+                        <div class="col">
+                            <div class="row justify-content-end pr-5">
+                                <h3 id="totalinterest">$0.00</h3>
                             </div>
-                            <div class="row">
-                                <div class="col ml-4">
-                                    <h3>本息合計總額</h3>
-                                </div>
-                                <div class="col">
-                                    <div class="row justify-content-end pr-5">
-                                        <h3 id="totalcost" class="mb-5">$0.00</h3>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col ml-4">
+                            <h3>本息合計總額</h3>
+                        </div>
+                        <div class="col">
+                            <div class="row justify-content-end pr-5">
+                                <h3 id="totalcost" class="mb-5">$0.00</h3>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="tablerow" class="row">
-                <table class="table table-responsive-lg table-dark table-striped mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">期數</th>
-                            <th scope="col">應繳金額</th>
-                            <th scope="col">本金</th>
-                            <th scope="col">利息</th>
-                            <th scope="col">累加利息</th>
-                            <th scope="col">房貸本金餘額</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <tr>
-                            <td scope="col">$0.00</td>
-                            <td scope="col">$0.00</td>
-                            <td scope="col">$0.00</td>
-                            <td scope="col">$0.00</td>
-                            <td scope="col">$0.00</td>
-                            <td scope="col">$0.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="clearfix">
-                <div class="pull-right show-more"> <span>顯示全部</span><i class="icon-gray-arrow-down"></i></div>
             </div>
         </div>
-        <!-- Calculator End -->
-
-
-        <!-- Footer Start -->
-        {% include "_footer.html" %}
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-        <!-- JavaScript Libraries -->
-        {% include "_js_lib.html" %}
-        <!-- Template Javascript -->
-        <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script src="//code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-        <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
-        <!-- Chart JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-            crossorigin="anonymous"></script>
-        <!-- Custom JS -->
-        <script src="{{ url_for('static',filename='js/CustomJS.js')}}"></script>
-        <script src="{{ url_for('static',filename='js/accounting.min.js')}}"></script>
-        <script src="{{ url_for('static',filename='js/InputFormatting.js')}}"></script>
-        <!-- Custom JS toggles nav -->
-        <script src="{{ url_for('static',filename='js/togglenav.js')}}"></script>
-        <!-- Calculate JS -->
-        <script src="{{ url_for('static',filename='js/mortgage.js')}}"></script>
-        {% endblock body %}
-</body>
+    </div>
+    <div id="tablerow" class="row">
+        <table class="table table-responsive-lg table-dark table-striped mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">期數</th>
+                    <th scope="col">應繳金額</th>
+                    <th scope="col">本金</th>
+                    <th scope="col">利息</th>
+                    <th scope="col">累加利息</th>
+                    <th scope="col">房貸本金餘額</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td scope="col">$0.00</td>
+                    <td scope="col">$0.00</td>
+                    <td scope="col">$0.00</td>
+                    <td scope="col">$0.00</td>
+                    <td scope="col">$0.00</td>
+                    <td scope="col">$0.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="clearfix">
+        <div class="pull-right show-more"> <span>顯示全部</span><i class="icon-gray-arrow-down"></i></div>
+    </div>
+</div>
+<!-- Calculator End -->
+{% include "_mortgage.html" %}
+{% endblock body %}
 
 </html>

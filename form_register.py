@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Email
 
 class FormRegister(FlaskForm):
     """依照Model來建置相對應的Form
-    
+
     password2: 用來確認兩次的密碼輸入相同
     """
     name = StringField('帳號',render_kw={"placeholder": "Enter name"}, validators=[

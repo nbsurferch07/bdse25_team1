@@ -33,8 +33,8 @@ class Predict(db.Model):
     bedroom = db.Column(db.Integer)
     liv = db.Column(db.Integer)
     bath = db.Column(db.Integer)
-    gar_price = db.Column(db.Integer)
     house_age = db.Column(db.Integer)
+    gar = db.Column(db.Integer)
     floor = db.Column(db.Integer)
     floor_all = db.Column(db.Integer)
     area = db.Column(db.Numeric(10, 2))
@@ -44,15 +44,15 @@ class Predict(db.Model):
     org = db.Column(db.String(30))
     predict_result = db.Column(db.Numeric(10, 2))
 
-    def __init__(self, name, city, region, bedroom, liv, bath, gar_price, house_age, floor, floor_all, area, house_type, house, material, org, predict_result):
+    def __init__(self, name, city, region, bedroom, liv, bath, house_age, gar, floor, floor_all, area, house_type, house, material, org, predict_result):
         self.name = name
         self.city = city
         self.region = region
         self.bedroom = bedroom
         self.liv = liv
         self.bath = bath
-        self.gar_price = gar_price
         self.house_age = house_age
+        self.gar = gar
         self.floor = floor
         self.floor_all = floor_all
         self.area = area
@@ -70,8 +70,8 @@ class Predict(db.Model):
             self.bedroom,
             self.liv,
             self.bath,
-            self.gar_price,
             self.house_age,
+            self.gar,
             self.floor,
             self.floor_all,
             self.area,

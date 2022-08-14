@@ -3,159 +3,113 @@
 {% block src %}
 {% include "_style.html" %}
 {% endblock src %}
-
-<body>
-    {% block body %}
-    <!-- Topbar Start -->
-    {% include "_topbar.html" %}
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-        <a href="{{url_for('index')}}" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 text-uppercase text-white"></i>Pattern Map</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                <a href="{{url_for('index')}}" class="nav-item nav-link">首頁</a>
-                <a href="{{url_for('about')}}" class="nav-item nav-link">關於我們</a>
-                <a href="{{url_for('pattern_reply')}}" class="nav-item nav-link">格局圖風水辨識</a>
-                <!-- <a href="team.html" class="nav-item nav-link">Master Chefs</a> -->
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">房價分析</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('info')}}" class="dropdown-item">房價資訊</a>
-                        <a href="{{url_for('predict_reply')}}" class="dropdown-item">房價預測</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">計算機</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="{{url_for('mortgage')}}" class="dropdown-item">房貸計算機</a>
-                        <a href="{{url_for('affordable')}}" class="dropdown-item active">可負擔房價計算機</a>
-                    </div>
-                </div>
-                <a href="{{url_for('contact')}}" class="nav-item nav-link">聯絡我們</a>
-            </div>
-            <div class="dropdown navbar-nav navbar-right border-inner px-3" style="position: absolute; right : 0px;">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">會員中心</a>
-                <div class="dropdown-menu m-0">
-                    <a href="{{url_for('login')}}" class="dropdown-item">登入</a>
-                    <a href="{{url_for('register')}}" class="dropdown-item">註冊</a>
-                    <a href="{{url_for('signout')}}" class="dropdown-item">登出</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-dark bg-img p-5 mb-5">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">可負擔房價試算</h1>
-                <p>輸入以下欄位，即為您估算您可以買到的房屋金額</p>
-            </div>
+{% block cal %}
+<a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">計算機</a>
+{% endblock cal %}
+{% block body %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">可負擔房價試算</h1>
+            <p>輸入以下欄位，即為您估算您可以買到的房屋金額</p>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-    <!-- Calculator Start -->
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <div class="row mt-5 inputoption">
-                            <section class="l-formTable container-xl mb-5 px-0 px-sm-3" data-type="comp"
-                                data-comp-name="_formTable">
-                                <div class="l-formTable__block">
-                                    <div class="l-formTable__form">
-                                        <div class="col ml-4 pt-3">
-                                            <div class="l-formTable__formRow max-600 row p-0">
-                                                <label for="amount"
-                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">自備款金額：</label>
-                                                <input type="text" name="amount"
-                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
-                                                    maxlength="4" id="amount" inputmode="numeric">
-                                                <div class="col-2 ">萬元</div>
+<!-- Calculator Start -->
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="row mt-5 inputoption">
+                        <section class="l-formTable container-xl mb-5 px-0 px-sm-3" data-type="comp"
+                            data-comp-name="_formTable">
+                            <div class="l-formTable__block">
+                                <div class="l-formTable__form">
+                                    <div class="col ml-4 pt-3">
+                                        <div class="l-formTable__formRow max-600 row p-0">
+                                            <label for="amount"
+                                                class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">自備款金額：</label>
+                                            <input type="text" name="amount"
+                                                class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                maxlength="4" id="amount" inputmode="numeric">
+                                            <div class="col-2 ">萬元</div>
+                                        </div>
+                                        <br>
+                                        <div class="l-formTable__formRow max-600 row p-0">
+                                            <label for="period"
+                                                class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">每月規劃還款金額：</label>
+                                            <input type="text" name="period"
+                                                class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                maxlength="7" id="period" inputmode="numeric">
+                                            <div class="col-2 ">元</div>
+                                            <div
+                                                class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                輸入資料不符合資格請重新輸入
                                             </div>
-                                            <br>
-                                            <div class="l-formTable__formRow max-600 row p-0">
-                                                <label for="period"
-                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">每月規劃還款金額：</label>
-                                                <input type="text" name="period"
-                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
-                                                    maxlength="7" id="period" inputmode="numeric">
-                                                <div class="col-2 ">元</div>
-                                                <div
-                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
-                                                    輸入資料不符合資格請重新輸入
-                                                </div>
+                                        </div>
+                                        <br>
+                                        <div class="l-formTable__formRow max-600 row p-0">
+                                            <label for="grace"
+                                                class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預計還款期間：</label>
+                                            <input type="text" name="grace"
+                                                class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                maxlength="2" id="grace" inputmode="numeric">
+                                            <div class="col-2">年</div>
+                                            <div
+                                                class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                輸入資料不符合資格請重新輸入
                                             </div>
-                                            <br>
-                                            <div class="l-formTable__formRow max-600 row p-0">
-                                                <label for="grace"
-                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預計還款期間：</label>
-                                                <input type="text" name="grace"
-                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
-                                                    maxlength="2" id="grace" inputmode="numeric">
-                                                <div class="col-2">年</div>
-                                                <div
-                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
-                                                    輸入資料不符合資格請重新輸入
-                                                </div>
+                                        </div>
+                                        <br>
+                                        <div class="l-formTable__formRow max-600 row p-0">
+                                            <label for="charge"
+                                                class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預估貸款利率：</label>
+                                            <input type="text" name="charge"
+                                                class="l-formTable__formRow--input col-10 col-sm-6 input-required"
+                                                maxlength="6" id="charge" inputmode="decimal">
+                                            <div class="col-2 ">%</div>
+                                            <div
+                                                class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
+                                                輸入資料不符合資格請重新輸入
                                             </div>
-                                            <br>
-                                            <div class="l-formTable__formRow max-600 row p-0">
-                                                <label for="charge"
-                                                    class="l-formTable__formRow--title col-12 col-sm-4 p-0 py-2">預估貸款利率：</label>
-                                                <input type="text" name="charge"
-                                                    class="l-formTable__formRow--input col-10 col-sm-6 input-required"
-                                                    maxlength="6" id="charge" inputmode="decimal">
-                                                <div class="col-2 ">%</div>
-                                                <div
-                                                    class="l-formTable__error col-sm-6 offset-sm-4 p-0 justify-content-start">
-                                                    輸入資料不符合資格請重新輸入
-                                                </div>
-                                            </div><br>
-                                            <img src="{{ url_for('static',filename='img/approved (1).png')}}" width="25" height="25" />
-                                            提醒您！實際自備款金額至少需準備「可負擔房屋總價」的2-3成喔!
-                                            <br>
-                                            <img src="{{ url_for('static',filename='img/approved (1).png')}}" width="25" height="25" />
-                                            提醒您！每月規劃還款金額大多為「家庭每月收入」的3成最為保險!
-                                            <hr class="mb-4 mr-4 ml-4 mb-4" />
-                                            <div class="btn-col2">
-                                                <div class="container">
-                                                    <div class="row justify-content-center px-0">
-                                                        <div class="row justify-content-center pt-3 px-0">
-                                                            <a class="btn calBtn bg-primary m-2  btn-warning">開始試算</a>
-                                                        </div>
+                                        </div><br>
+                                        <img src="{{ url_for('static',filename='img/approved (1).png')}}" width="25"
+                                            height="25" />
+                                        提醒您！實際自備款金額至少需準備「可負擔房屋總價」的2-3成喔!
+                                        <br>
+                                        <img src="{{ url_for('static',filename='img/approved (1).png')}}" width="25"
+                                            height="25" />
+                                        提醒您！每月規劃還款金額大多為「家庭每月收入」的3成最為保險!
+                                        <hr class="mb-4 mr-4 ml-4 mb-4" />
+                                        <div class="btn-col2">
+                                            <div class="container">
+                                                <div class="row justify-content-center px-0">
+                                                    <div class="row justify-content-center pt-3 px-0">
+                                                        <a class="btn calBtn bg-primary m-2  btn-warning">開始試算</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
                     </div>
-                    <div id="outputs" class="col" style="background-image: url(../img/back_house.png);">
-                        <div class="row l-formTableCal__result">
-                            <div id="m1" class="col">
-                                <div id="m2" class="row justify-content-center mt-4">
-                                    <h1>可負擔之房屋總價</h1>
-                                </div>
-                                <div class="row justify-content-center pt-5 pb-5">
-                                    <!-- 試算結果內容 -->
-                                    <div class="col-12">
-                                        <div class="py-1 color-primary font-weight" id="result"
-                                            style="font-size: 40px;"></div>
+                </div>
+                <div id="outputs" class="col" style="background-image: url(../img/back_house.png);">
+                    <div class="row l-formTableCal__result">
+                        <div id="m1" class="col">
+                            <div id="m2" class="row justify-content-center mt-4">
+                                <h1>可負擔之房屋總價</h1>
+                            </div>
+                            <div class="row justify-content-center pt-5 pb-5">
+                                <!-- 試算結果內容 -->
+                                <div class="col-12">
+                                    <div class="py-1 color-primary font-weight" id="result" style="font-size: 40px;">
                                     </div>
                                 </div>
                             </div>
@@ -165,52 +119,37 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        "use Calculation";
+<script>
+    "use Calculation";
 
-        //#region 開頭去0
-        function trimStarZero(val) {
-            var flag = false;
-            const reg = /^0/g;
-            while (reg.test(val)) {
-                val = val.replace(reg, "");
-                flag = true;
-            }
-
-            if (flag && val == "") {
-                val = "0";
-            }
-            return val;
+    //#region 開頭去0
+    function trimStarZero(val) {
+        var flag = false;
+        const reg = /^0/g;
+        while (reg.test(val)) {
+            val = val.replace(reg, "");
+            flag = true;
         }
-        //#endregion
 
-        //#region 千分位格式化
-        function formatNumber(n) {
-            n += "";
-            var arr = n.split(".");
-            var re = /(\d{1,3})(?=(\d{3})+$)/g;
-            return arr[0].replace(re, "$1,") + (arr.length == 2 ? "." + arr[1] : "");
+        if (flag && val == "") {
+            val = "0";
         }
+        return val;
+    }
+    //#endregion
+
+    //#region 千分位格式化
+    function formatNumber(n) {
+        n += "";
+        var arr = n.split(".");
+        var re = /(\d{1,3})(?=(\d{3})+$)/g;
+        return arr[0].replace(re, "$1,") + (arr.length == 2 ? "." + arr[1] : "");
+    }
         //#endregion
-    </script>
-    <!-- Calculator End -->
-
-    <!-- Footer Start -->
-    {% include "_footer.html" %}
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    {% include "_js_lib.html" %}
-    <!-- Template Javascript -->
-    <script src="{{ url_for('static',filename='js/main.js')}}"></script>
-    <script src="{{ url_for('static',filename='js/afford.js')}}"></script>
-    {% endblock body %}
-</body>
+</script>
+<!-- Calculator End -->
+{% endblock body %}
 
 </html>
