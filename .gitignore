@@ -71,6 +71,8 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 .sock
+flask_session/
+migrations/
 
 # Scrapy stuff:
 .scrapy
