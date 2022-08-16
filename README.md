@@ -118,7 +118,7 @@ bdse25_team1 project
 
 ## Quick start
 
-- [Website link](http://34.80.27.2/api)
+- [Website link](http://34.80.19.68/)
 - [Download model](https://reurl.cc/V1EDo5)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
